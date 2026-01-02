@@ -1,4 +1,4 @@
-/* ================= Products.jsx (FIXED tooltips + mobile safe) ================= */
+/* ================= Products.jsx (Commodity hover fade added) ================= */
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { geoNaturalEarth1, geoPath, geoGraticule, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
@@ -66,8 +66,9 @@ const PRODUCTS = {
 export default function Products() {
   const [active, setActive] = useState('Oilseeds');
   const [tooltip, setTooltip] = useState(null);
-  const containerRef = useRef(null);
+  const [hoveredCommodity, setHoveredCommodity] = useState(null);
 
+  const containerRef = useRef(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const projection = geoNaturalEarth1()
@@ -82,7 +83,7 @@ export default function Products() {
     []
   );
 
-  // Close tooltip on outside click (mobile safe)
+  // Close tooltip on outside click
   useEffect(() => {
     const handler = (e) => {
       if (!containerRef.current?.contains(e.target)) {
@@ -104,9 +105,16 @@ export default function Products() {
         {Object.keys(PRODUCTS).map(key => (
           <button
             key={key}
-            onClick={() => { setActive(key); setTooltip(null); }}
+            onClick={() => {
+              setActive(key);
+              setTooltip(null);
+              setHoveredCommodity(null);
+            }}
             className={`px-4 py-2 rounded-full border transition
-              ${active === key ? 'bg-emerald-700 text-white' : 'hover:bg-warm-gray'}`}
+              ${active === key
+                ? 'bg-emerald-700 text-white'
+                : 'hover:bg-warm-gray'
+              }`}
           >
             {key}
           </button>
@@ -125,36 +133,53 @@ export default function Products() {
 
           <g>
             {countries.map((d, i) => {
+              const countryName = d.properties.name;
               const commodities =
-                PRODUCTS[active].countries[d.properties.name];
+                PRODUCTS[active].countries[countryName];
 
-              const isActive = Boolean(commodities);
+              const isActiveCountry = Boolean(commodities);
+              const matchesHovered =
+                hoveredCommodity &&
+                commodities?.includes(hoveredCommodity);
+
+              let opacity = 1;
+
+              if (hoveredCommodity && isActiveCountry && !matchesHovered) {
+                opacity = 0.25;
+              }
 
               return (
                 <path
                   key={i}
                   d={path(d)}
-                  fill={isActive ? PRODUCTS[active].color : '#d8d2c7ff'}
+                  fill={
+                    isActiveCountry
+                      ? PRODUCTS[active].color
+                      : '#d8d2c7ff'
+                  }
+                  opacity={opacity}
                   stroke="#FFF"
                   strokeWidth={0.5}
-                  className={isActive ? 'cursor-pointer' : ''}
+                  className={`transition-opacity duration-200 ${
+                    isActiveCountry ? 'cursor-pointer' : ''
+                  }`}
                   onMouseEnter={(e) => {
-                    if (isMobile || !isActive) return;
+                    if (isMobile || !isActiveCountry) return;
                     setTooltip({
                       x: e.clientX,
                       y: e.clientY,
-                      country: d.properties.name,
+                      country: countryName,
                       commodities,
                     });
                   }}
                   onMouseLeave={() => !isMobile && setTooltip(null)}
                   onClick={(e) => {
-                    if (!isActive) return;
+                    if (!isActiveCountry) return;
                     const [cx, cy] = projection(geoCentroid(d));
                     setTooltip({
                       x: isMobile ? cx : e.clientX,
                       y: isMobile ? cy : e.clientY,
-                      country: d.properties.name,
+                      country: countryName,
                       commodities,
                     });
                   }}
@@ -163,6 +188,7 @@ export default function Products() {
             })}
           </g>
         </svg>
+
         {/* Legend */}
         <div className="absolute top-3 left-3 max-w-[70vw] md:max-w-none
           bg-warm-50/90 backdrop-blur rounded-xl shadow px-3 py-2
@@ -171,7 +197,12 @@ export default function Products() {
           <div className="font-semibold mb-1">Index</div>
           <ul className="space-y-1">
             {PRODUCTS[active].index.map(item => (
-              <li key={item} className="flex items-center gap-2 whitespace-nowrap">
+              <li
+                key={item}
+                className="flex items-center gap-2 whitespace-nowrap cursor-pointer"
+                onMouseEnter={() => setHoveredCommodity(item)}
+                onMouseLeave={() => setHoveredCommodity(null)}
+              >
                 <span
                   className="w-2.5 h-2.5 rounded"
                   style={{ background: PRODUCTS[active].color }}
