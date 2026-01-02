@@ -29,7 +29,7 @@ export default function Header() {
   }, [isHome]);
 
   /* -------------------------------
-     Home navigation helpers
+     Navigation helpers
   -------------------------------- */
   const goHome = () => {
     if (isHome) {
@@ -69,59 +69,68 @@ export default function Header() {
       )}
 
       {/* HEADER */}
-      <header
-        className={`fixed top-0 w-full safe-top transition-colors duration-300
-          ${solid || !isHome ? "bg-warm-100 shadow" : "bg-transparent"}
-          ${menuOpen ? "pointer-events-none" : "z-50"}
-        `}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* LOGO → HOME */}
-          <button
-            onClick={goHome}
-            className={`font-bold tracking-wide transition-colors ${logoClass}`}
-            aria-label="Go to home page"
-          >
-            LOGO
-          </button>
+      <header className="fixed top-0 inset-x-0 z-50">
+        {/* ✅ SAFE-AREA BACKGROUND LAYER */}
+        <div
+          className={`absolute inset-0 transition-colors duration-300
+            ${solid || !isHome ? "bg-warm-100 shadow" : "bg-transparent"}
+          `}
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
+        />
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex gap-6 text-sm font-medium">
-            <Link to="/about" className={navLinkClass}>
-              About Us
-            </Link>
-
+        {/* ✅ HEADER CONTENT */}
+        <div
+          className="relative"
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+            {/* LOGO */}
             <button
-              onClick={() => handleHomeScroll("services")}
-              className={navLinkClass}
+              onClick={goHome}
+              className={`font-bold tracking-wide transition-colors ${logoClass}`}
+              aria-label="Go to home page"
             >
-              Services
+              LOGO
             </button>
 
-            <button
-              onClick={() => handleHomeScroll("products")}
-              className={navLinkClass}
-            >
-              Products
-            </button>
+            {/* Desktop nav */}
+            <nav className="hidden md:flex gap-6 text-sm font-medium">
+              <Link to="/about" className={navLinkClass}>
+                About Us
+              </Link>
 
-            <Link to="/contact" className={navLinkClass}>
-              Contact Us
-            </Link>
-          </nav>
+              <button
+                onClick={() => handleHomeScroll("services")}
+                className={navLinkClass}
+              >
+                Services
+              </button>
 
-          {/* Hamburger */}
-          {!menuOpen && (
-            <button
-              aria-label="Open menu"
-              className={`md:hidden text-2xl transition-colors ${
-                solid || !isHome ? "text-gray-600" : "text-white"
-              }`}
-              onClick={() => setMenuOpen(true)}
-            >
-              ☰
-            </button>
-          )}
+              <button
+                onClick={() => handleHomeScroll("products")}
+                className={navLinkClass}
+              >
+                Products
+              </button>
+
+              <Link to="/contact" className={navLinkClass}>
+                Contact Us
+              </Link>
+            </nav>
+
+            {/* Hamburger */}
+            {!menuOpen && (
+              <button
+                aria-label="Open menu"
+                className={`md:hidden text-2xl transition-colors ${
+                  solid || !isHome ? "text-gray-600" : "text-white"
+                }`}
+                onClick={() => setMenuOpen(true)}
+              >
+                ☰
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
@@ -133,7 +142,6 @@ export default function Header() {
             : "opacity-0 pointer-events-none"}
         `}
       >
-        {/* Close */}
         <button
           aria-label="Close menu"
           className="absolute top-6 right-6 text-4xl text-gray-600"
@@ -142,9 +150,7 @@ export default function Header() {
           ×
         </button>
 
-        {/* Mobile nav */}
         <nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
-          {/* HOME */}
           <button
             onClick={() => {
               goHome();
