@@ -6,6 +6,33 @@
 
 @import "tailwindcss";
 
+body {
+  @apply font-sans text-gray-900;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif;
+}
+
+h1, h2 {
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-weight: 600;
+  }
+}
+
+p {
+  line-height: 1.65;
+}
+
 @theme {
   /* Define a warm color */
   --color-warm: #ffeedd; 
