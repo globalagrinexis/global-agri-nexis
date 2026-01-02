@@ -1,0 +1,66 @@
+/* ==== index.css (global styles) ==== */
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "tailwindcss";
+
+@theme {
+  /* Define a warm color */
+  --color-warm: #ffeedd; 
+
+  /* You can also define shades if needed */
+  --color-warm-50: #fffbf5;
+  --color-warm-100: #fff7eb;
+  --color-warm-200: #ffeedd;
+  --color-warm-300: #ffe6cc;
+  --color-warm-400: #ffdba3;
+  --color-warm-500: #ffce7a;
+  --color-warm-600: #f5b95a;
+  --color-warm-700: #e0a34b;
+  --color-warm-800: #cc903c;
+  --color-warm-900: #b87e2e;
+  --color-warm-950: #9e6921;
+  --color-warm-gray: #e2ded5ff;
+}
+
+
+html { scroll-behavior: smooth; }
+
+:focus-visible {
+  outline: 2px solid theme('colors.emerald.600');
+  outline-offset: 2px;
+}
+
+/* Hyperlink highlighter */
+.link-highlight {
+  position: relative;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.link-highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.15em;
+  height: 0.16em;
+  width: 0;
+  z-index: 0;
+  transition: width 0.4s ease;
+}
+
+/* Emerald (default) */
+.link-highlight--emerald::after {
+  background-color: theme('colors.emerald.600');
+}
+
+/* White (for dark backgrounds like footer) */
+.link-highlight--light::after {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.link-highlight:hover::after {
+  width: 100%;
+}
