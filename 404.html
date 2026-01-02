@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        var repo = "/global-agri-nexis";
+        var path = window.location.pathname;
+
+        // Redirect /global-agri-nexis/about → /global-agri-nexis/?/about
+        if (path.startsWith(repo)) {
+          var newPath =
+            repo +
+            "/?/" +
+            path.replace(repo + "/", "") +
+            window.location.search +
+            window.location.hash;
+
+          window.location.replace(newPath);
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
