@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function Underlay() {
+  
   return (
     <section
       id="about"
@@ -9,10 +10,15 @@ export default function Underlay() {
       {/* TEXT COLUMN */}
       <div className="flex flex-col justify-center">
         <p className="text-lg max-w-xl">
-          Global Agri Nexis (GAN) is a leading international agri-commodities firm that brings together growers,
-          sellers, and buyers across the oilseeds, pulses, and grains value chain.
+          Global Agri Nexis (GAN) is a leading international agri-commodities firm
+          that brings together growers, sellers, and buyers across the oilseeds,
+          pulses and grains value chain.
         </p>
-        <Link to="/about" className="link-highlight link-highlight--emerald mt-6 inline-block w-fit">
+
+        <Link
+          to="/about"
+          className="link-highlight link-highlight--emerald mt-6 inline-block w-fit"
+        >
           Meet the Team
         </Link>
       </div>
@@ -22,37 +28,37 @@ export default function Underlay() {
         {/* MOBILE STACK */}
         <div className="md:hidden grid grid-cols-2 gap-4">
           <img
-            src="../../public/crop-field-2.jpg"
+            src="/crop-field-2.jpg"
             className="rounded-xl object-cover aspect-[4/5]"
-            alt=""
+            alt="Crop field"
           />
           <img
-            src="../../public/pulses-2.jpg"
+            src="/pulses-2.jpg"
             className="rounded-xl object-cover aspect-[4/5]"
-            alt=""
+            alt="Pulses"
           />
           <img
-            src="../../public/vessel-2.jpg"
+            src="/vessel-2.jpg"
             className="col-span-2 rounded-xl object-cover aspect-[16/9]"
-            alt=""
+            alt="Cargo vessel"
           />
         </div>
 
         {/* DESKTOP COLLAGE */}
         <div className="hidden md:block relative h-[20rem]">
           <img
-            src="../../public/vessel-2.jpg"
-            alt=""
+            src="/vessel-2.jpg"
+            alt="Cargo vessel"
             className="absolute h-47 left-62 bottom-23 rotate-90 rounded-xl shadow-lg"
           />
           <img
-            src="../../public/pulses-2.jpg"
-            alt=""
+            src="/pulses-2.jpg"
+            alt="Pulses"
             className="absolute h-40 left-8 bottom-48 rounded-xl shadow-md"
           />
           <img
-            src="../../public/crop-field-2.jpg"
-            alt=""
+            src="/crop-field-2.jpg"
+            alt="Crop field"
             className="absolute w-65 left-1 top-38 rounded-xl shadow-xl"
           />
         </div>

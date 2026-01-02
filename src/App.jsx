@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Header from "./components/Header";
@@ -40,6 +40,13 @@ function PageWrapper({ children }) {
 
 function AnimatedRoutes() {
   const location = useLocation();
+
+  // ✅ GitHub Pages refresh fix:
+  // Converts /global-agri-nexis/?/about -> /global-agri-nexis/about
+  if (location.search.startsWith("?/")) {
+    const newPath = location.search.replace("?/", "/");
+    window.history.replaceState(null, "", newPath);
+  }
 
   return (
     <AnimatePresence mode="wait">

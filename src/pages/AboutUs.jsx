@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function AboutUs() {
+  const base = import.meta.env.BASE_URL;
+
   /* Parallax setup */
   const parallaxRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -16,7 +18,7 @@ export default function AboutUs() {
   return (
     <main className="bg-warm-100 text-gray-900">
       {/* ================= INTRO ================= */}
-      <section className="bg-emerald-700 text-gray-100 py-24 px-6 md:px-15">
+      <section className="bg-emerald-700 text-gray-100 py-24 px-6 md:px-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -27,11 +29,14 @@ export default function AboutUs() {
             Global Agri Nexis
           </h1>
           <p className="text-lg text-gray-100">
-            Global commodity markets are more difficult to understand than ever. <br></br> We are here to change that.
+            Global commodity markets are more difficult to understand than ever.
+            <br />
+            We are here to change that.
           </p>
         </motion.div>
       </section>
-      
+
+      {/* ================= CONTENT ================= */}
       <section className="max-w-7xl mx-auto px-6 md:px-20 pt-20 pb-24">
         <p className="text-gray-700 leading-relaxed max-w-4xl">
           GAN is a team of seasoned and passionate trader-brokers dedicated to
@@ -40,10 +45,12 @@ export default function AboutUs() {
           intermediaries, GAN specializes in the import of Oilseeds, Pulses, and
           Grains—particularly Desi Chickpeas, Yellow Peas, Pigeon Peas, Black
           Matpe, and Lentils—along with the import of oils and oilseeds and the
-          export of oil meal on C&F, CIF, and High Seas bases. Backed by promoters
-          with up to 40 years of deep industry experience across imports and
-          general trade, the firm combines institutional knowledge with a modern,
-          client-centric approach.
+          export of oil meal on C&F, CIF, and High Seas bases.
+          <br />
+          <br />
+          Backed by promoters with up to 40 years of deep industry experience
+          across imports and general trade, the firm combines institutional
+          knowledge with a modern, client-centric approach.
           <br />
           <br />
           GAN is committed to keeping clients continuously informed through
@@ -51,27 +58,22 @@ export default function AboutUs() {
           professional execution of every transaction. With strong,
           long-standing relationships with refiners and leading national and
           multinational companies, GAN consistently secures optimal outcomes
-          for both buyers and sellers. By consciously avoiding self-trading, the
-          firm reinforces its core values of honesty, integrity, and
-          transparency, building lasting trust in every engagement. Guided by a
-          vision to become one of the most admired and innovative organizations
-          in the industry, GAN operates with a clear mission to deliver
-          high-quality, cost-effective, and value-added solutions, grounded in
-          achievement, innovation, open communication, accountability, and
-          teamwork.
+          for both buyers and sellers.
+          <br />
+          <br />
+          By consciously avoiding self-trading, the firm reinforces its core
+          values of honesty, integrity, and transparency, building lasting
+          trust in every engagement.
         </p>
       </section>
 
-      {/* ================= PARALLAX BUFFER ================= */}
-      <section
-        ref={parallaxRef}
-        className="relative h-screen overflow-hidden"
-      >
+      {/* ================= PARALLAX SECTION ================= */}
+      <section ref={parallaxRef} className="relative h-screen overflow-hidden">
         {/* Background image */}
         <motion.div
-          style={{ 
+          style={{
             y: yBg,
-            backgroundImage: "url('../../public/soybean-inv.jpg')",
+            backgroundImage: `url('/soybean-inv.jpg')`,
           }}
           className="absolute -inset-x-0 -top-1/4 h-[140%] bg-cover bg-center"
         />
@@ -82,7 +84,7 @@ export default function AboutUs() {
         {/* Left text */}
         <motion.div
           style={{ y: yTextLeft }}
-          className="absolute left-6 md:left-30 top-20 max-w-md text-gray-100"
+          className="absolute left-6 md:left-20 top-20 max-w-md text-gray-100"
         >
           <h2 className="text-4xl md:text-5xl font-bold leading-tight">
             Transparency.
@@ -96,7 +98,7 @@ export default function AboutUs() {
         {/* Right text */}
         <motion.div
           style={{ y: yTextRight }}
-          className="absolute right-6 md:right-40 bottom-30 max-w-sm text-gray-100 text-right"
+          className="absolute right-6 md:right-20 bottom-24 max-w-sm text-gray-100 text-right"
         >
           <p className="text-lg">
             Built on relationships.
@@ -116,20 +118,16 @@ export default function AboutUs() {
               key={i}
               className="bg-warm-50 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm"
             >
-              {/* Portrait */}
               <div className="w-40 h-40 rounded-full bg-warm-gray mb-6" />
 
-              {/* Name */}
               <h3 className="font-semibold text-lg">Director Name</h3>
               <p className="text-sm text-gray-500 mb-4">Designation</p>
 
-              {/* Description */}
               <p className="text-sm text-gray-700 mb-4">
                 Brief profile description of the director highlighting
                 experience, expertise, and leadership within the organization.
               </p>
 
-              {/* Socials */}
               <div className="flex gap-4 text-sm text-emerald-600">
                 <a href="#" className="hover:underline">
                   LinkedIn
