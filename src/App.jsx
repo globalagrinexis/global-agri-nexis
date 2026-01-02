@@ -33,6 +33,7 @@ function PageWrapper({ children }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="bg-warm-100 min-h-screen"
     >
       {children}
     </motion.div>
@@ -90,10 +91,10 @@ function AnimatedRoutes() {
 /* ---------------- App Root ---------------- */
 export default function App() {
   return (
-    <>
+    <div className="bg-warm-100 min-h-screen">
       <Header />
       <AnimatedRoutes />
       <Footer />
-    </>
+    </div>
   );
 }

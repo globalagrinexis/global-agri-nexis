@@ -6,6 +6,11 @@
 
 @import "tailwindcss";
 
+/* index.css or globals.css */
+html, body, #root {
+  background-color: #fff7eb; /* bg-warm-100 hex */
+}
+
 body {
   @apply font-sans text-gray-900;
 }
