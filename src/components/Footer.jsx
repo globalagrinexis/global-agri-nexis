@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Linkedin } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -32,14 +33,13 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="font-semibold mb-2">Follow</h4>
-          <a href="#" className="underline">LinkedIn</a>
           <p className="mt-2">
             Questions?{" "}
             <Link to="/contact" id="reachout" className="link-highlight link-highlight--light">
               Reach out
             </Link>
           </p>
+          <a href="#" className="underline">LinkedIn</a>
         </div>
 
 
