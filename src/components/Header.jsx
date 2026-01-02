@@ -70,7 +70,7 @@ export default function Header() {
 
       {/* HEADER */}
       <header
-        className={`fixed top-0 w-full transition-colors duration-300
+        className={`fixed top-0 w-full safe-top transition-colors duration-300
           ${solid || !isHome ? "bg-warm-100 shadow" : "bg-transparent"}
           ${menuOpen ? "pointer-events-none" : "z-50"}
         `}

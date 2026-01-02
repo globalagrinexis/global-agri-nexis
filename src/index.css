@@ -4,11 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* index.css or globals.css */
-html, body, #root {
-  background-color: #fff7eb; /* bg-warm-100 hex */
-}
 
+/* Font related styles */
 body {
   @apply font-sans text-gray-900;
 }
@@ -36,11 +33,10 @@ p {
   line-height: 1.65;
 }
 
+/* Custom theme colors */
 @theme {
   /* Define a warm color */
   --color-warm: #ffeedd; 
-
-  /* You can also define shades if needed */
   --color-warm-50: #fffbf5;
   --color-warm-100: #fff7eb;
   --color-warm-200: #ffeedd;
@@ -55,8 +51,18 @@ p {
   --color-warm-gray: #e2ded5ff;
 }
 
-
+/* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+/* To avoid flashing during transitions */
+html, body, #root {
+  background-color: rgb(var(--warm-100)); /* bg-warm-100 hex */
+}
+
+/* Header background for the notch */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
 
 :focus-visible {
   outline: 2px solid theme('colors.emerald.600');
