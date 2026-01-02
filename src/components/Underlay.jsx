@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import cropfieldIMG from "/crop-field.jpg";
-import vesselIMG from "/pulses.jpg";
-import pulsesIMG from "/vessel.jpg";
+import pulsesIMG from "/pulses.jpg";
+import vesselIMG from "/vessel.jpg";
 
 export default function Underlay() {
   
