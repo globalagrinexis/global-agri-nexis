@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 
+/* ---------------- Home Page ---------------- */
 function Home() {
   return (
     <>
@@ -24,7 +25,7 @@ function Home() {
   );
 }
 
-/* Page transition wrapper */
+/* ---------------- Page Animation Wrapper ---------------- */
 function PageWrapper({ children }) {
   return (
     <motion.div
@@ -38,13 +39,17 @@ function PageWrapper({ children }) {
   );
 }
 
+/* ---------------- Animated Routes ---------------- */
 function AnimatedRoutes() {
   const location = useLocation();
 
-  // ✅ GitHub Pages refresh fix:
-  // Converts /global-agri-nexis/?/about -> /global-agri-nexis/about
+  /**
+   * GitHub Pages refresh fix
+   * Converts:
+   *   /?//about  →  /about
+   */
   if (location.search.startsWith("?/")) {
-    const newPath = location.search.replace("?/", "/");
+    const newPath = location.search.slice(1);
     window.history.replaceState(null, "", newPath);
   }
 
@@ -59,6 +64,7 @@ function AnimatedRoutes() {
             </PageWrapper>
           }
         />
+
         <Route
           path="/about"
           element={
@@ -67,6 +73,7 @@ function AnimatedRoutes() {
             </PageWrapper>
           }
         />
+
         <Route
           path="/contact"
           element={
@@ -80,6 +87,7 @@ function AnimatedRoutes() {
   );
 }
 
+/* ---------------- App Root ---------------- */
 export default function App() {
   return (
     <>
