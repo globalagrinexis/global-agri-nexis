@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import parallaxIMG from '/soybean.jpg';
 
 export default function AboutUs() {
   const base = import.meta.env.BASE_URL;
@@ -73,7 +74,7 @@ export default function AboutUs() {
         <motion.div
           style={{
             y: yBg,
-            backgroundImage: `url('/soybean-inv.jpg')`,
+            backgroundImage: `url(${parallaxIMG})`,
           }}
           className="absolute -inset-x-0 -top-1/4 h-[140%] bg-cover bg-center"
         />

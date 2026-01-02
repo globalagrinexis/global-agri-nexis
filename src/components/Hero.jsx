@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import heroVID from "/hero.mp4";
+import heroFALLBACK from "/hero-fallback.png";
 
 const base = import.meta.env.BASE_URL;
 
@@ -12,9 +14,9 @@ export default function Hero() {
         loop
         playsInline
         preload="metadata"
-        poster="/hero-rye-fallback.png"
+        poster={ heroFALLBACK }
       >
-        <source src="/hero-rye.mp4" type="video/mp4" />
+        <source src={ heroVID } type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
