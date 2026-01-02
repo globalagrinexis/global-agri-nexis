@@ -6,9 +6,9 @@ export default function Hero() {
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay muted loop playsInline preload="metadata"
-        poster="/hero-rye-fallback.png"
+        poster="../../public/hero-rye-fallback.png"
       >
-        <source src="/hero-rye.mp4" type="video/mp4" />
+        <source src="../../public/hero-rye.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
       <motion.div

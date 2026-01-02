@@ -71,7 +71,7 @@ export default function AboutUs() {
         <motion.div
           style={{ 
             y: yBg,
-            backgroundImage: "url('/soybean-inv.jpg')",
+            backgroundImage: "url('../../public/soybean-inv.jpg')",
           }}
           className="absolute -inset-x-0 -top-1/4 h-[140%] bg-cover bg-center"
         />

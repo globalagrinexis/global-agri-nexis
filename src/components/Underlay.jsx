@@ -22,17 +22,17 @@ export default function Underlay() {
         {/* MOBILE STACK */}
         <div className="md:hidden grid grid-cols-2 gap-4">
           <img
-            src="/crop-field-2.jpg"
+            src="../../public/crop-field-2.jpg"
             className="rounded-xl object-cover aspect-[4/5]"
             alt=""
           />
           <img
-            src="/pulses-2.jpg"
+            src="../../public/pulses-2.jpg"
             className="rounded-xl object-cover aspect-[4/5]"
             alt=""
           />
           <img
-            src="/vessel-2.jpg"
+            src="../../public/vessel-2.jpg"
             className="col-span-2 rounded-xl object-cover aspect-[16/9]"
             alt=""
           />
@@ -41,17 +41,17 @@ export default function Underlay() {
         {/* DESKTOP COLLAGE */}
         <div className="hidden md:block relative h-[20rem]">
           <img
-            src="/vessel-2.jpg"
+            src="../../public/vessel-2.jpg"
             alt=""
             className="absolute h-47 left-62 bottom-23 rotate-90 rounded-xl shadow-lg"
           />
           <img
-            src="/pulses-2.jpg"
+            src="../../public/pulses-2.jpg"
             alt=""
             className="absolute h-40 left-8 bottom-48 rounded-xl shadow-md"
           />
           <img
-            src="/crop-field-2.jpg"
+            src="../../public/crop-field-2.jpg"
             alt=""
             className="absolute w-65 left-1 top-38 rounded-xl shadow-xl"
           />
