@@ -1,12 +1,12 @@
-/* ================= Products.jsx (Commodity hover fade added) ================= */
+/* ================= Products.jsx (Desktop Tooltips + Mobile Safe) ================= */
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { geoNaturalEarth1, geoPath, geoGraticule, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import worldData from '../data/world-110m.json';
-
+const highlightCOLOR = 'oklch(50.8% 0.118 165.612)'
 const PRODUCTS = {
   Oilseeds: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: highlightCOLOR,
     countries: {
       'United States of America': ['Soybean'],
       Brazil: ['Soybean'],
@@ -25,7 +25,7 @@ const PRODUCTS = {
   },
 
   Pulses: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: highlightCOLOR,
     countries: {
       India: ['Desi Chickpeas', 'Pigeon Peas'],
       Canada: ['Lentils', 'Yellow Peas'],
@@ -47,7 +47,7 @@ const PRODUCTS = {
   },
 
   Grains: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: highlightCOLOR,
     countries: {
       India: ['Wheat', 'Rice', 'Maize'],
       China: ['Rice', 'Maize'],
@@ -65,15 +65,17 @@ const PRODUCTS = {
 
 export default function Products() {
   const [active, setActive] = useState('Oilseeds');
-  const [tooltip, setTooltip] = useState(null);
   const [hoveredCommodity, setHoveredCommodity] = useState(null);
+  const [hoveredCountryCommodities, setHoveredCountryCommodities] = useState(null);
+  const [tooltip, setTooltip] = useState(null);
 
   const containerRef = useRef(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
+  /* ---------- Projection ---------- */
   const projection = geoNaturalEarth1()
-    .scale(isMobile ? 135 : 160)
-    .translate([480, 250]);
+    .scale(isMobile ? 185 : 160)
+    .translate(isMobile ? [480, 290] : [480, 250]);
 
   const path = geoPath(projection);
   const graticule = geoGraticule();
@@ -83,10 +85,12 @@ export default function Products() {
     []
   );
 
-  // Close tooltip on outside click
+  /* ---------- Close tooltip / hover on outside click ---------- */
   useEffect(() => {
     const handler = (e) => {
       if (!containerRef.current?.contains(e.target)) {
+        setHoveredCommodity(null);
+        setHoveredCountryCommodities(null);
         setTooltip(null);
       }
     };
@@ -95,7 +99,7 @@ export default function Products() {
   }, []);
 
   return (
-    <section id="products" className="py-16 md:py-20 px-4 md:px-20 bg-warm-100">
+    <section id="products" className="py-16 md:py-20 px-3 md:px-20 bg-warm-100">
       <h2 className="text-3xl font-semibold text-center mb-8">
         Our Global Commodity Footprint
       </h2>
@@ -107,8 +111,9 @@ export default function Products() {
             key={key}
             onClick={() => {
               setActive(key);
-              setTooltip(null);
               setHoveredCommodity(null);
+              setHoveredCountryCommodities(null);
+              setTooltip(null);
             }}
             className={`px-4 py-2 rounded-full border transition
               ${active === key
@@ -121,9 +126,11 @@ export default function Products() {
         ))}
       </div>
 
-      <div ref={containerRef} className="relative bg-warm-100 rounded-2xl p-3 md:p-4">
-        <svg viewBox="0 0 960 500" className="w-full h-auto">
-          {/* Gridlines */}
+      <div ref={containerRef} className="relative rounded-2xl">
+        <svg
+          viewBox={isMobile ? '0 0 960 600' : '0 0 960 500'}
+          className="w-full h-auto"
+        >
           <path
             d={path(graticule())}
             fill="none"
@@ -134,17 +141,15 @@ export default function Products() {
           <g>
             {countries.map((d, i) => {
               const countryName = d.properties.name;
-              const commodities =
-                PRODUCTS[active].countries[countryName];
-
+              const commodities = PRODUCTS[active].countries[countryName];
               const isActiveCountry = Boolean(commodities);
-              const matchesHovered =
-                hoveredCommodity &&
-                commodities?.includes(hoveredCommodity);
 
               let opacity = 1;
-
-              if (hoveredCommodity && isActiveCountry && !matchesHovered) {
+              if (
+                hoveredCommodity &&
+                isActiveCountry &&
+                !commodities.includes(hoveredCommodity)
+              ) {
                 opacity = 0.25;
               }
 
@@ -152,11 +157,7 @@ export default function Products() {
                 <path
                   key={i}
                   d={path(d)}
-                  fill={
-                    isActiveCountry
-                      ? PRODUCTS[active].color
-                      : '#d8d2c7ff'
-                  }
+                  fill={isActiveCountry ? PRODUCTS[active].color : '#d8d2c7ff'}
                   opacity={opacity}
                   stroke="#FFF"
                   strokeWidth={0.5}
@@ -165,6 +166,8 @@ export default function Products() {
                   }`}
                   onMouseEnter={(e) => {
                     if (isMobile || !isActiveCountry) return;
+
+                    setHoveredCountryCommodities(commodities);
                     setTooltip({
                       x: e.clientX,
                       y: e.clientY,
@@ -172,16 +175,11 @@ export default function Products() {
                       commodities,
                     });
                   }}
-                  onMouseLeave={() => !isMobile && setTooltip(null)}
-                  onClick={(e) => {
-                    if (!isActiveCountry) return;
-                    const [cx, cy] = projection(geoCentroid(d));
-                    setTooltip({
-                      x: isMobile ? cx : e.clientX,
-                      y: isMobile ? cy : e.clientY,
-                      country: countryName,
-                      commodities,
-                    });
+                  onMouseLeave={() => {
+                    if (!isMobile) {
+                      setHoveredCountryCommodities(null);
+                      setTooltip(null);
+                    }
                   }}
                 />
               );
@@ -190,49 +188,61 @@ export default function Products() {
         </svg>
 
         {/* Legend */}
-        <div className="absolute top-3 left-3 max-w-[70vw] md:max-w-none
-          bg-warm-50/90 backdrop-blur rounded-xl shadow px-3 py-2
-          text-xs md:text-sm overflow-x-auto"
-        >
-          <div className="font-semibold mb-1">Index</div>
+        <div className="absolute top-3 left-3 bg-warm-50/90 backdrop-blur rounded-xl shadow px-3 py-2 text-xs md:text-sm">
           <ul className="space-y-1">
-            {PRODUCTS[active].index.map(item => (
-              <li
-                key={item}
-                className="flex items-center gap-2 whitespace-nowrap cursor-pointer"
-                onMouseEnter={() => setHoveredCommodity(item)}
-                onMouseLeave={() => setHoveredCommodity(null)}
-              >
-                <span
-                  className="w-2.5 h-2.5 rounded"
-                  style={{ background: PRODUCTS[active].color }}
-                />
-                {item}
-              </li>
-            ))}
+            {PRODUCTS[active].index.map(item => {
+              const isDimmed =
+                hoveredCommodity
+                  ? hoveredCommodity !== item
+                  : hoveredCountryCommodities &&
+                    !hoveredCountryCommodities.includes(item);
+
+              return (
+                <li
+                  key={item}
+                  className={`flex items-center gap-2 cursor-pointer transition-opacity
+                    ${isDimmed ? 'opacity-30' : 'opacity-100'}`}
+                  onMouseEnter={() => {
+                    if (!isMobile) setHoveredCommodity(item);
+                  }}
+                  onMouseLeave={() => {
+                    if (!isMobile) setHoveredCommodity(null);
+                  }}
+                  onClick={() => {
+                    if (isMobile) {
+                      setHoveredCommodity(prev =>
+                        prev === item ? null : item
+                      );
+                    }
+                  }}
+                >
+                  <span
+                    className="w-2.5 h-2.5 rounded"
+                    style={{ background: PRODUCTS[active].color }}
+                  />
+                  {item}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
-        {/* Tooltip */}
-        {tooltip && (
+        {/* Tooltip (DESKTOP ONLY) */}
+        {!isMobile && tooltip && (
           <div
             role="tooltip"
-            className="absolute z-20 bg-warm-50 shadow-xl rounded-lg
-              px-3 py-2 text-xs md:text-sm pointer-events-none"
+            className="absolute z-30 bg-warm-50 shadow-xl rounded-lg px-3 py-2 text-xs md:text-sm pointer-events-none"
             style={{
-              left: tooltip.x,
-              top: tooltip.y,
-              transform: isMobile
-                ? 'translate(-50%, -120%)'
-                : 'translate(-50%, -100%)',
+              left: tooltip.x - 85,  // offset slightly to the right of cursor
+              top: tooltip.y - 85,   // offset slightly below cursor
+              transform: 'translate(0, 0)', // no negative translate, so it hugs mouse
             }}
           >
             <div className="font-semibold">{tooltip.country}</div>
-            <div className="text-black mt-1">
-              {tooltip.commodities.join(', ')}
-            </div>
+            <div className="mt-1">{tooltip.commodities.join(', ')}</div>
           </div>
         )}
+
       </div>
     </section>
   );
