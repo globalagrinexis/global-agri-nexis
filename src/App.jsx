@@ -75,10 +75,10 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <Router>
+    <>
       <Header />
       <AnimatedRoutes />
       <Footer />
-    </Router>
+    </>
   );
 }
