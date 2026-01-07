@@ -6,10 +6,10 @@ export default function Footer() {
       <div className="bg-emerald-800 text-gray-100 py-16 px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
         <div>
           <div className="font-bold mb-4">LOGO</div>
-          <p className="text-sm font-bold">India</p>
+          <p className="font-bold">India</p>
           <p className="text-sm">D-59, Hauz Khas</p>
           <p className="text-sm mb-4">New Delhi, Delhi - 110016</p>
-          <p className="text-sm font-bold">United Arab Emirates</p>
+          <p className="font-bold">United Arab Emirates</p>
           <p className="text-sm">FDRK3423, Compass Building,</p>
           <p className="text-sm">Al Shohada Road, AL Hamra Industrial Zone-FZ,</p>
           <p className="text-sm">Ras Al Khaimah</p>
