@@ -38,10 +38,16 @@ export default function Footer() {
         <div>
           <p className="mt-2">
             Questions?{" "}
-            <Link to="/contact" id="reachout" className="link-white">
-              <span data-text="Reach out">Reach out</span>    
+            <Link
+              to="/contact"
+              state={{ scrollToTop: true }}
+              id="reachout"
+              className="link-white"
+            >
+              <span data-text="Reach out">Reach out</span>
             </Link>
           </p>
+
           <a href="#" data-text="LinkedIn" className="link-white">LinkedIn</a>
         </div>
 

@@ -1,6 +1,28 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Contact() {
+  const location = useLocation();
+
+  /* --------------------------------
+     Scroll to top when navigated
+     via "Reach out"
+  -------------------------------- */
+  useEffect(() => {
+    if (location.state?.scrollToTop) {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
+        // Clear state so refresh/back doesn't re-trigger scroll
+        window.history.replaceState({}, document.title);
+      });
+    }
+  }, [location]);
+
   return (
     <main className="bg-warm-100 text-gray-900">
       {/* PAGE HEADER */}
@@ -38,7 +60,8 @@ export default function Contact() {
                 name="name"
                 type="text"
                 required
-                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-md border border-gray-300 px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
@@ -51,7 +74,8 @@ export default function Contact() {
                 name="email"
                 type="email"
                 required
-                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-md border border-gray-300 px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
@@ -63,7 +87,8 @@ export default function Contact() {
                 id="company"
                 name="company"
                 type="text"
-                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-md border border-gray-300 px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
@@ -76,13 +101,15 @@ export default function Contact() {
                 name="message"
                 rows={5}
                 required
-                className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-md border border-gray-300 px-4 py-2
+                  focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
             <motion.button
               whileTap={{ scale: 0.97 }}
-              className="bg-emerald-600 text-white px-6 py-3 rounded-md font-medium hover:bg-emerald-700 transition"
+              className="bg-emerald-600 text-white px-6 py-3 rounded-md
+                font-medium hover:bg-emerald-700 transition"
               type="submit"
             >
               Send Message
@@ -92,10 +119,12 @@ export default function Contact() {
           {/* CONTACT DETAILS */}
           <div className="space-y-6">
             <div>
-              <h3 className="font-semibold text-lg mb-2">Get in touch</h3>
+              <h3 className="font-semibold text-lg mb-2">
+                Get in touch
+              </h3>
               <p className="text-gray-700">
-                We work with buyers, sellers, refiners, and global partners across
-                the agri-commodities value chain.
+                We work with buyers, sellers, refiners, and global partners
+                across the agri-commodities value chain.
               </p>
             </div>
 
