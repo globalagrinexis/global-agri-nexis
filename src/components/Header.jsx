@@ -95,7 +95,11 @@ export default function Header() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex gap-6 text-sm font-medium">
-              <Link to="/about" className={navLinkClass}>
+              <Link 
+                to="/about" 
+                className={navLinkClass}
+                state={{ scrollToTop: true }}
+              >
                 About Us
               </Link>
 
@@ -113,7 +117,11 @@ export default function Header() {
                 Products
               </button>
 
-              <Link to="/contact" className={navLinkClass}>
+              <Link 
+                to="/contact" 
+                className={navLinkClass}
+                state={{ scrollToTop: true }}
+              >
                 Contact Us
               </Link>
             </nav>

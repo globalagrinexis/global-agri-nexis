@@ -1,9 +1,28 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import parallaxIMG from '/soybean.jpg';
+import { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import parallaxIMG from "/soybean.jpg";
 
 export default function AboutUs() {
-  const base = import.meta.env.BASE_URL;
+  const location = useLocation();
+
+  /* --------------------------------
+     Scroll to top when navigated
+     from quick links
+  -------------------------------- */
+  useEffect(() => {
+    if (location.state?.scrollToTop) {
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+
+        // Clear state to prevent re-trigger
+        window.history.replaceState({}, document.title);
+      });
+    }
+  }, [location]);
 
   /* Parallax setup */
   const parallaxRef = useRef(null);

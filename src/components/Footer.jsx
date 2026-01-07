@@ -18,7 +18,11 @@ export default function Footer() {
           <p className="font-bold mb-4">Quick Links</p>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/about" className="link-white">
+              <Link 
+                to="/about" 
+                state={{ scrollToTop: true }}
+                className="link-white"
+              >
                 <span data-text="About Us">About Us</span>
               </Link>
             </li>

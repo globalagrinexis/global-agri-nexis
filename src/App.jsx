@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -30,10 +31,13 @@ function Home() {
 function PageWrapper({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0.6, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{ duration: 0.35, ease: "easeInOut" }}
+      exit={{ opacity: 0.6, y: -6 }}
+      transition={{
+        duration: 0.45,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="bg-warm-100 min-h-screen"
     >
       {children}
@@ -44,16 +48,24 @@ function PageWrapper({ children }) {
 /* ---------------- Animated Routes ---------------- */
 function AnimatedRoutes() {
   const location = useLocation();
+  const isFirstLoad = useRef(true);
 
-  /**
-   * GitHub Pages refresh fix
-   * Converts:
-   *   /?//about  →  /about
-   */
   if (location.search.startsWith("?/")) {
     const newPath = location.search.slice(1);
     window.history.replaceState(null, "", newPath);
   }
+
+  useEffect(() => {
+    if (!location.state?.scrollToTop) return;
+
+    if (isFirstLoad.current) {
+      window.scrollTo({ top: 0 });
+      isFirstLoad.current = false;
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location]);
 
   return (
     <AnimatePresence mode="wait">
@@ -66,7 +78,6 @@ function AnimatedRoutes() {
             </PageWrapper>
           }
         />
-
         <Route
           path="/about"
           element={
@@ -75,7 +86,6 @@ function AnimatedRoutes() {
             </PageWrapper>
           }
         />
-
         <Route
           path="/contact"
           element={
