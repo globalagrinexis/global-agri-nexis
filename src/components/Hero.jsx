@@ -7,28 +7,27 @@ export default function Hero() {
   const videoRef = useRef(null);
 
   /* ---------------------------------
-     Mobile autoplay enforcement
-     (iOS Safari edge case)
+     Force autoplay (iOS-safe)
   ---------------------------------- */
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const attemptPlay = async () => {
-      try {
-        await video.play();
-      } catch {
-        // Autoplay blocked (Low Power Mode / Data Saver)
-        // Fallback poster will remain visible
-      }
-    };
+    video.muted = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
 
-    attemptPlay();
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked → fallback image remains
+      });
+    }
   }, []);
 
   return (
     <section id="hero" className="relative h-screen overflow-hidden">
-      {/* Fallback image (always behind video) */}
+      {/* Hard fallback image */}
       <img
         src={heroFALLBACK}
         alt=""
@@ -39,13 +38,17 @@ export default function Hero() {
       {/* Video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         autoPlay
         muted
         loop
         playsInline
         preload="metadata"
         poster={heroFALLBACK}
+        controls={false}
+        tabIndex={-1}
+        disablePictureInPicture
+        disableRemotePlayback
       >
         <source src={heroVID} type="video/mp4" />
       </video>
