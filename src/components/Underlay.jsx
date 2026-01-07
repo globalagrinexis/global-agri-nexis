@@ -19,9 +19,23 @@ export default function Underlay() {
         </p>
         <Link
           to="/about"
-          className="link-highlight link-highlight--emerald mt-6 inline-block w-fit"
+          className="link-emerald mt-6 inline-block w-fit"
         >
-          Meet the Team
+          <span data-text="Meet the Team">Meet the Team</span>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
         </Link>
       </div>
 

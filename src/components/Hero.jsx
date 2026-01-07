@@ -70,10 +70,11 @@ export default function Hero() {
 
         <a
           href="#reachout"
-          className="link-highlight link-highlight--emerald pt-5 mt-6 text-lg w-fit"
+          className="link-emerald pt-5 mt-6 text-lg text-gray-100 w-fit"
         >
-          Connect with us
+          <span className="text-gray-100" data-text="Connect with us">Connect with us</span>
         </a>
+
       </motion.div>
     </section>
   );

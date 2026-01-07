@@ -8,29 +8,28 @@ export default function Footer() {
           <div className="font-bold mb-4">LOGO</div>
           <p className="text-sm font-bold">India</p>
           <p className="text-sm">D-59, Hauz Khas</p>
-          <p className="text-sm">New Delhi, Delhi - 110016</p>
-          <div className="mb-2"></div>
+          <p className="text-sm mb-4">New Delhi, Delhi - 110016</p>
           <p className="text-sm font-bold">United Arab Emirates</p>
           <p className="text-sm">405, Compass Building, </p>
           <p className="text-sm">Al Shohada Road, 309049</p>
           <p className="text-sm">Al Hamra Industrial Zone-FZ, Ras Al Khaimah</p>
         </div>
         <div>
-          <h4 className="font-semibold mb-4">Quick Links</h4>
+          <p className="font-bold mb-4">Quick Links</p>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/about" className="hover:underline">
-                About Us
+              <Link to="/about" className="link-white">
+                <span data-text="About Us">About Us</span>
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:underline">
-                Terms & Conditions
+              <Link to="/terms" className="link-white">
+                <span data-text="Terms & Conditions">Terms & Conditions</span>
               </Link>
             </li>
             <li>
-              <Link to="/privacy" className="hover:underline">
-                Privacy Policy
+              <Link to="/privacy" className="link-white">
+                <span data-text="Privacy Policy">Privacy Policy</span>
               </Link>
             </li>
           </ul>
@@ -39,11 +38,11 @@ export default function Footer() {
         <div>
           <p className="mt-2">
             Questions?{" "}
-            <Link to="/contact" id="reachout" className="link-highlight link-highlight--light">
-              Reach out
+            <Link to="/contact" id="reachout" className="link-white">
+              <span data-text="Reach out">Reach out</span>    
             </Link>
           </p>
-          <a href="#" className="underline">LinkedIn</a>
+          <a href="#" data-text="LinkedIn" className="link-white">LinkedIn</a>
         </div>
 
 

@@ -69,34 +69,129 @@ html, body, #root {
   outline-offset: 2px;
 }
 
-/* Hyperlink highlighter */
-.link-highlight {
+
+/* ===============================
+   Emerald Animated Link Highlight
+   =============================== */
+
+.link-emerald {        /* gray-700 */
+  --hovered-color: #10b981;        /* emerald-500 */
+
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
   font-weight: 500;
-  display: inline-block;
+  font-size: 1.125rem; /* text-lg */
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.link-highlight::after {
+.link-emerald span {
+  position: relative;
+}
+
+/* underline */
+.link-emerald::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0.15em;
-  height: 0.16em;
+  bottom: -2px;
   width: 0;
-  z-index: 0;
-  transition: width 0.4s ease;
+  height: 2px;
+  background-color: var(--hovered-color);
+  transition: width 0.3s ease-out;
 }
 
-/* Emerald (default) */
-.link-highlight--emerald::after {
-  background-color: theme('colors.emerald.600');
+/* text color reveal */
+.link-emerald span::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: width 0.3s ease-out;
 }
 
-/* White (for dark backgrounds like footer) */
-.link-highlight--light::after {
-  background-color: rgba(255, 255, 255, 0.85);
+/* arrow */
+.link-emerald svg {
+  width: 16px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  transition-delay: 0.15s;
 }
 
-.link-highlight:hover::after {
+/* hover states */
+.link-emerald:hover::after {
   width: 100%;
+}
+
+.link-emerald:hover span::before {
+  width: 100%;
+}
+
+.link-emerald:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+
+/* ==================================
+   White Animated Link Highlight
+   (For dark backgrounds / footer)
+   ================================== */
+
+.link-white {
+  --hovered-color: #ffffff;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-white span {
+  position: relative;
+}
+
+.link-white::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--hovered-color);
+  transition: width 0.3s ease-out;
+}
+
+.link-white span::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: width 0.3s ease-out;
+}
+
+.link-white svg {
+  width: 16px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  transition-delay: 0.15s;
+}
+
+.link-white:hover::after {
+  width: 100%;
+}
+
+.link-white:hover span::before {
+  width: 100%;
+}
+
+.link-white:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
 }
