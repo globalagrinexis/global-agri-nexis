@@ -5,10 +5,15 @@ export default function Footer() {
     <footer>
       <div className="bg-emerald-800 text-gray-100 py-16 px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
         <div>
-          <div className="font-bold mb-2">LOGO</div>
-          <p className="text-sm">123 Business Street</p>
-          <p className="text-sm">ABC City</p>
-          <p className="text-sm">Country</p>
+          <div className="font-bold mb-4">LOGO</div>
+          <p className="text-sm font-bold">India</p>
+          <p className="text-sm">D-59, Hauz Khas</p>
+          <p className="text-sm">New Delhi, Delhi - 110016</p>
+          <div className="mb-2"></div>
+          <p className="text-sm font-bold">United Arab Emirates</p>
+          <p className="text-sm">405, Compass Building, </p>
+          <p className="text-sm">Al Shohada Road, 309049</p>
+          <p className="text-sm">Al Hamra Industrial Zone-FZ, Ras Al Khaimah</p>
         </div>
         <div>
           <h4 className="font-semibold mb-4">Quick Links</h4>

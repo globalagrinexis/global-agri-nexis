@@ -17,7 +17,6 @@ export default function Underlay() {
           that brings together growers, sellers, and buyers across the oilseeds,
           pulses and grains value chain.
         </p>
-
         <Link
           to="/about"
           className="link-highlight link-highlight--emerald mt-6 inline-block w-fit"
