@@ -135,14 +135,14 @@ export default function Contact() {
                   href="mailto:info@gan.com"
                   className="text-emerald-600 hover:underline"
                 >
-                  info@gan.com
+                  info@globalagrinexis.com
                 </a>
               </p>
               <p>
                 <strong>Phone:</strong> +91-XXXXXXXXXX
               </p>
               <p>
-                <strong>Location:</strong> India
+                <strong>Locations:</strong> India, UAE
               </p>
             </div>
 
