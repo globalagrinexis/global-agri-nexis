@@ -34,7 +34,7 @@ export default function Hero() {
         aria-hidden
         className="absolute inset-0 w-full h-full object-cover"
       />
-
+      {/* TODO: make a separate working version for iOS devices that either relies on a shorter vid or a fall back IMG entirely */}
       {/* Video */}
       <video
         ref={videoRef}
