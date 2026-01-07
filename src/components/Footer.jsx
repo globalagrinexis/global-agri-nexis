@@ -10,9 +10,9 @@ export default function Footer() {
           <p className="text-sm">D-59, Hauz Khas</p>
           <p className="text-sm mb-4">New Delhi, Delhi - 110016</p>
           <p className="text-sm font-bold">United Arab Emirates</p>
-          <p className="text-sm">405, Compass Building, </p>
-          <p className="text-sm">Al Shohada Road, 309049</p>
-          <p className="text-sm">Al Hamra Industrial Zone-FZ, Ras Al Khaimah</p>
+          <p className="text-sm">FDRK3423, Compass Building,</p>
+          <p className="text-sm">Al Shohada Road, AL Hamra Industrial Zone-FZ,</p>
+          <p className="text-sm">Ras Al Khaimah</p>
         </div>
         <div>
           <p className="font-bold mb-4">Quick Links</p>
