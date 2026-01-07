@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Orientation Guard for mobile view */
+@media (orientation: landscape) and (max-width: 767px) {
+  body {
+    overflow: hidden;
+  }
+}
 
 /* Font related styles */
 body {
