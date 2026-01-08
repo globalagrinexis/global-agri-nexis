@@ -4,62 +4,89 @@ import { geoNaturalEarth1, geoPath, geoGraticule, geoCentroid } from 'd3-geo';
 import { feature } from 'topojson-client';
 import worldData from '../data/world-110m.json';
 
+const HighlightCOLOR = 'oklch(50.8% 0.118 165.612)'
+
 const PRODUCTS = {
   Oilseeds: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: HighlightCOLOR,
     countries: {
       'United States of America': ['Soybean'],
       Brazil: ['Soybean'],
       Argentina: ['Soybean', 'Sunflower'],
       Canada: ['Canola'],
-      Ukraine: ['Sunflower'],
-      Russia: ['Sunflower'],
-      India: ['Mustard', 'Groundnut', 'Sesame'],
+      Ukraine: ['Sunflower', 'Rapeseed'],
+      Russia: ['Sunflower', 'Rapeseed'],
+      India: ['Soybean', 'Rapeseed', 'Groundnut', 'Sesame'],
       Australia: ['Canola'],
+      Benin: ['Soybean', 'Cottonseed'],
+      Togo: ['Soybean'],
+      'Burkina Faso': ['Soybean'],
+      Myanmar: ['Soybean'],
+      Ethiopia: ['Soybean'],
+      Tanzania: ['Soybean', 'Sesame'],
+      Mozambique: ['Soybean'],
+      Nigeria: ['Soybean', 'Sesame'],
+      Philippines: ['Coconut']
     },
     index: [
-      'Soybean','Sunflower','Canola','Mustard',
-      'Groundnut','Sesame','Cottonseed','Safflower',
-      'Linseed','Castor','Coconut'
+      'Soybean','Canola','Rapeseed',
+      'Groundnut','Sesame','Cottonseed','Coconut'
     ],
   },
 
   Pulses: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: HighlightCOLOR,
     countries: {
-      India: ['Desi Chickpeas', 'Pigeon Peas'],
-      Canada: ['Lentils', 'Yellow Peas'],
-      Australia: ['Lentils'],
-      Myanmar: ['Black Matpe'],
-      Russia: ['Yellow Peas'],
-      Ethiopia: ['Chickpeas', 'Lentils'],
-      Tanzania: ['Pigeon Peas'],
+      India: ['Lentils', 'Chickpeas', 'Pigeon Peas', 'Black Matpe', 'Kidney Beans'],
+      Canada: ['Faba Beans', 'Chickpeas', 'Lentils', 'Yellow Peas'],
+      Australia: ['Faba Beans', 'Chickpeas', 'Yellow Peas', 'Lentils'],
+      Myanmar: ['Black Matpe', 'Pigeon Peas'],
+      Russia: ['Lentils', 'Chickpeas', 'Yellow Peas'],
+      Ethiopia: ['Kidney Beans', 'Pigeon Peas', 'Chickpeas', 'Lentils'],
+      Uganda: ['Kidney Beans'],
+      Tanzania: ['Chickpeas', 'Pigeon Peas'],
       Mozambique: ['Pigeon Peas'],
-      Nigeria: ['Cowpeas'],
-      Sudan: ['Chickpeas'],
-      Ukraine: ['Peas'],
-      Turkey: ['Chickpeas'],
+      Malawi: ['Pigeon Peas'],
+      Nigeria: ['Pigeon Peas'],
+      Sudan: ['Chickpeas', 'Pigeon Peas'],
+      Kenya: ['Pigeon Peas'],
+      Ukraine: ['Chickpeas', 'Peas', 'Yellow Peas'],
+      Turkey: ['Chickpeas', 'Yellow Peas'],
+      Brazil: ['Kidney Beans','Black Matpe'],
+      Argentina: ['Kidney Beans', 'Chickpeas', 'Yellow Peas'],
+      Egypt: ['Kidney Beans'],
+      Lithuania: ['Yellow Peas'],
+      Latvia: ['Yellow Peas'],
+      Estonia: ['Yellow Peas'],
+      Belarus: ['Yellow Peas']
     },
     index: [
-      'Lentils','Desi Chickpeas','Yellow Peas',
-      'Pigeon Peas','Black Matpe','Cowpeas'
+      'Lentils','Chickpeas','Yellow Peas',
+      'Pigeon Peas','Black Matpe','Kidney Beans',
+      'Faba Beans'
     ],
   },
 
   Grains: {
-    color: 'oklch(50.8% 0.118 165.612)',
+    color: HighlightCOLOR,
     countries: {
-      India: ['Wheat', 'Rice', 'Maize'],
-      China: ['Rice', 'Maize'],
+      India: ['Wheat', 'Rice', 'Maize', 'Sorghum'],
+      Myanmar: ['Maize'],
+      China: ['Maize'],
       Vietnam: ['Rice'],
-      Japan: ['Rice'],
+      Thailand: ['Rice'],
       'United States of America': ['Maize', 'Wheat', 'Sorghum'],
-      Ukraine: ['Maize', 'Barley'],
+      Ukraine: ['Maize', 'Barley', 'Sorghum'],
       Russia: ['Wheat', 'Barley'],
-      Argentina: ['Maize', 'Wheat'],
-      Australia: ['Wheat', 'Barley'],
+      Argentina: ['Maize', 'Wheat', 'Sorghum'],
+      Australia: ['Oats','Wheat', 'Barley', 'Sorghum'],
+      France: ['Barley'],
+      Canada: ['Oats']
     },
-    index: ['Wheat', 'Rice', 'Maize', 'Barley', 'Sorghum'],
+    index: ['Wheat', 'Rice', 'Maize', 
+            'Barley', 'Sorghum', 'Oats',
+
+    ],
   },
 };
 
