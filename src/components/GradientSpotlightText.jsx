@@ -43,14 +43,14 @@ export default function GradientSpotlightText({ children, className = "" }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`relative inline-block ${className}`}
-      style={{ lineHeight: "1.1" }}
+      style={{ lineHeight: "1.18" }}
     >
       {/* BASE GRADIENT (always visible) */}
       <span
         className="relative z-10 block bg-clip-text text-transparent"
         style={{
           backgroundImage: baseGradient,
-          lineHeight: "1.1"
+          lineHeight: "1.18"
         }}
       >
         {children}
@@ -62,7 +62,7 @@ export default function GradientSpotlightText({ children, className = "" }) {
         className="absolute inset-0 z-20 block bg-clip-text text-transparent pointer-events-none"
         style={{
           backgroundImage: hovered ? spotlightGradient : "none",
-          lineHeight: "1.1"
+          lineHeight: "1.18"
         }}
       >
         {children}

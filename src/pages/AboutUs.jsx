@@ -45,8 +45,11 @@ export default function AboutUs() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl"
         >
-          <h1 className="text-4xl pt-8 md:text-5xl font-bold mb-4">
-            Global Agri Nexis
+          <h1 
+            className="text-4xl pt-8 md:text-5xl font-bold mb-4"
+            style={{fontFamily: "DM Serif Text"}}
+          >
+              Global Agri Nexis
           </h1>
           <p className="text-lg text-gray-100">
             Global commodity markets are more difficult to understand than ever.
@@ -130,7 +133,7 @@ export default function AboutUs() {
 
       {/* ================= MANAGEMENT ================= */}
       <section className="max-w-7xl mx-auto px-6 md:px-20 py-24">
-        <h2 className="text-3xl font-semibold mb-12">The Management</h2>
+        <h2 className="text-3xl font-semibold mb-12">The Leadership Team</h2>
 
         <div className="grid md:grid-cols-3 gap-10">
           {[1, 2, 3].map((i) => (

@@ -64,16 +64,19 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-gray-200"
       >
-        <h1 className="text-5xl md:text-7xl max-w-2xl">
-          Sourcing{" "}
-          <GradientSpotlightText>
-            quality
-          </GradientSpotlightText>
-          , sustaining{" "}
-          <GradientSpotlightText>
-            trust
-          </GradientSpotlightText>
-          .
+        <h1 
+          className="text-5xl md:text-7xl max-w-2xl"
+          style={{ fontFamily: "DM Serif Text" }}
+        >
+            Sourcing{" "}
+            <GradientSpotlightText>
+              quality
+            </GradientSpotlightText>
+            , sustaining{" "}
+            <GradientSpotlightText>
+              trust
+            </GradientSpotlightText>
+            .
         </h1>
 
         <a
