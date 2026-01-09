@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import heroVID from "/hero.mp4";
 import heroFALLBACK from "/hero-fallback.png";
+import GradientSpotlightText from "./GradientSpotlightText";
 
 export default function Hero() {
   const videoRef = useRef(null);
@@ -63,9 +64,16 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-gray-200"
       >
-        <h1 className="text-5xl md:text-7xl font-bold max-w-2xl">
-          Sourcing <span className="text-emerald-500">quality</span>, sustaining{" "}
-          <span className="text-emerald-500">trust</span>.
+        <h1 className="text-5xl md:text-7xl max-w-2xl">
+          Sourcing{" "}
+          <GradientSpotlightText>
+            quality
+          </GradientSpotlightText>
+          , sustaining{" "}
+          <GradientSpotlightText>
+            trust
+          </GradientSpotlightText>
+          .
         </h1>
 
         <a

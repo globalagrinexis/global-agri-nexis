@@ -52,8 +52,8 @@ export default function Header() {
   -------------------------------- */
   const navLinkClass =
     solid || !isHome
-      ? "text-gray-600 hover:text-emerald-600"
-      : "text-gray-300 hover:text-emerald-600";
+      ? "text-gray-600 hover:text-emerald-500"
+      : "text-gray-100 hover:text-emerald-500";
 
   const logoClass =
     solid || !isHome ? "text-gray-600" : "text-white";
