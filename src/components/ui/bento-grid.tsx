@@ -1,7 +1,14 @@
-// src/components/ui/bento-grid.tsx
+import React from "react";
 import { cn } from "../../lib/utils";
 
-export function BentoGrid({ className, children }) {
+/* ---------------- BentoGrid ---------------- */
+
+interface BentoGridProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export function BentoGrid({ className, children }: BentoGridProps) {
   return (
     <div
       className={cn(
@@ -14,12 +21,21 @@ export function BentoGrid({ className, children }) {
   );
 }
 
+/* ---------------- BentoGridItem ---------------- */
+
+interface BentoGridItemProps {
+  className?: string;
+  title: string;
+  description: string;
+  icon?: React.ReactNode;
+}
+
 export function BentoGridItem({
   className,
   title,
   description,
   icon,
-}) {
+}: BentoGridItemProps) {
   return (
     <div
       className={cn(
@@ -31,6 +47,7 @@ export function BentoGridItem({
         {icon}
         <h3 className="font-semibold text-lg">{title}</h3>
       </div>
+
       <p className="text-sm text-gray-600 leading-relaxed">
         {description}
       </p>
