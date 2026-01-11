@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { sectionHeadingReveal } from "../lib/motion";
 
 export default function Newsletter() {
   return (
@@ -7,10 +8,7 @@ export default function Newsletter() {
       aria-labelledby="newsletter-heading"
     >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        {...sectionHeadingReveal}
       >
         <h2 id="newsletter-heading" className="text-2xl font-semibold mb-4">
           Weekly Commodity Insights

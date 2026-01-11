@@ -1,6 +1,5 @@
-// src/components/Services.jsx
-import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
-import { motion } from "framer-motion";
+// src/components/services/services.data.js
+
 import {
   TrendingUp,
   Handshake,
@@ -10,7 +9,7 @@ import {
   Globe,
 } from "lucide-react";
 
-const services = [
+export const services = [
   {
     title: "Tech-Driven Market Research",
     description:
@@ -50,36 +49,3 @@ const services = [
     className: "md:col-span-2",
   },
 ];
-
-export default function Services() {
-  return (
-    <section
-      id="services"
-      className="bg-warm-gray py-20 px-6 md:px-20"
-      aria-labelledby="services-heading"
-    >
-      <motion.h2
-        id="services-heading"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl font-semibold mb-12 text-center"
-      >
-        What We Offer
-      </motion.h2>
-
-      <BentoGrid className="bg-warm-gray max-w-7xl mx-auto">
-        {services.map((item, i) => (
-          <BentoGridItem
-            key={i}
-            title={item.title}
-            description={item.description}
-            icon={item.icon}
-            className={item.className}
-          />
-        ))}
-      </BentoGrid>
-    </section>
-  );
-}

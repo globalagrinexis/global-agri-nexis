@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import heroFALLBACK from "/hero-fallback.avif";
-import HeroVideo from "./ui/HeroVideo.jsx";
-import {textReveal} from "../lib/motion.ts"
+import HeroVideo from "./HeroVideo.jsx";
+import heroPoster from "/hero-fallback.avif"
+import { heroTextReveal } from "../../lib/motion.ts"
+import { useLowPowerMode } from "../../hooks/useLowPower.ts";
+
 
 export default function Hero() {
   const videoRef = useRef(null);
+  const lowPower = useLowPowerMode();
 
   /* ---------------------------------
      Force autoplay (iOS-safe)
@@ -29,15 +32,24 @@ export default function Hero() {
   return (
     <section id="hero" className="relative h-screen overflow-hidden">
       {/* Hard fallback image */}
-      <img
+      {/* <img
         src={heroFALLBACK}
         alt=""
         aria-hidden
         className="absolute inset-0 w-full h-full object-cover"
-      />
-      {/* TODO: make a separate working version for iOS devices that either relies on a shorter vid or a fall back IMG entirely */}
-      {/* Video */}
-      <HeroVideo />
+      /> */}
+
+      {/* Banner Video / Poster on low power mode */}
+      {!lowPower ? (
+        <HeroVideo />
+      ) : (
+        <img
+          src={heroPoster}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchpriority="high"
+        />
+      )}
 
 
       {/* Overlay */}
@@ -45,7 +57,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        {...textReveal}
+        {...heroTextReveal}
         className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-gray-200 hero-text-shadow"
       >
         <h1 className="text-4xl md:text-7xl max-w-2xl">

@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import Header from "./components/Header";
-import Hero from "./components/Hero";
+import Hero from "./components/hero/Hero";
 import Underlay from "./components/Underlay";
-import Services from "./components/Services";
-import Products from "./components/Products";
+import Services from "./components/services/Services";
+import Products from "./components/products/Products";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import OrientationGuard from "./components/ui/OrientationGuard";

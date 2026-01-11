@@ -55,7 +55,7 @@ export default function Underlay() {
           />
           <img
             src={vesselIMG}
-            className="col-span-2 rounded-xl object-cover aspect-[9/16]"
+            className="col-span-2 rounded-xl object-cover aspect-[16/9]"
             alt="Cargo vessel"
           />
         </div>

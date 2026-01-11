@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { pagesHeadingReveal } from "../lib/motion"
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import parallaxIMG from "/soybean.avif";
@@ -40,9 +41,7 @@ export default function AboutUs() {
       {/* ================= INTRO ================= */}
       <section className="bg-gradient-to-r from-emerald-800 via-emerald-700 via-emerald-600 via-emerald-700 to-emerald-800 text-gray-100 py-24 px-6 md:px-20">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          {...pagesHeadingReveal}
           className="max-w-3xl"
         >
           <h1 

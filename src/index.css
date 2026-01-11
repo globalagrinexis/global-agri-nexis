@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LCP Optimization: force hero height early */
+.hero {
+  min-height: 100svh;
+}
+
 /* Orientation Guard for mobile view */
 @media (orientation: landscape) and (max-width: 767px) {
   body {

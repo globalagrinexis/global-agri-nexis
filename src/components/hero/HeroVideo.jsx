@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import fallbackIMG from "/fallback-poster.avif"
 
 export default function HeroVideo() {
   const videoRef = useRef(null);
@@ -33,8 +34,8 @@ export default function HeroVideo() {
         playsInline
         autoPlay
         loop
-        preload="none"
-        poster=""
+        preload="metadata"
+        poster={fallbackIMG}
         aria-hidden="true"
       >
         {shouldLoad && (
