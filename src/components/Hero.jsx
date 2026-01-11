@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import heroVID from "/hero.mp4";
-import heroFALLBACK from "/hero-fallback.png";
-import GradientSpotlightText from "./GradientSpotlightText";
+import heroFALLBACK from "/hero-fallback.avif";
+import HeroVideo from "./ui/HeroVideo.jsx";
+import {textReveal} from "../lib/motion.ts"
 
 export default function Hero() {
   const videoRef = useRef(null);
@@ -37,51 +37,24 @@ export default function Hero() {
       />
       {/* TODO: make a separate working version for iOS devices that either relies on a shorter vid or a fall back IMG entirely */}
       {/* Video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={heroFALLBACK}
-        controls={false}
-        tabIndex={-1}
-        disablePictureInPicture
-        disableRemotePlayback
-      >
-        <source src={heroVID} type="video/mp4" />
-      </video>
+      <HeroVideo />
+
 
       {/* Overlay */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
+      {/* <div className="absolute inset-0 backdrop-blur-sm bg-gray-700/15" /> */}
 
       {/* Content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-gray-200"
+        {...textReveal}
+        className="relative z-10 h-full flex flex-col justify-center px-6 md:px-20 text-gray-200 hero-text-shadow"
       >
-        <h1 
-          className="text-5xl md:text-7xl max-w-2xl"
-          style={{ fontFamily: "DM Serif Text" }}
-        >
-            Sourcing{" "}
-            <GradientSpotlightText>
-              quality
-            </GradientSpotlightText>
-            , sustaining{" "}
-            <GradientSpotlightText>
-              trust
-            </GradientSpotlightText>
-            .
+        <h1 className="text-4xl md:text-7xl max-w-2xl">
+            Sourcing quality, sustaining trust.
         </h1>
 
         <a
-          href="#reachout"
-          className="link-emerald pt-5 mt-6 text-lg text-gray-100 w-fit"
+          href="mailto:info@globalagrinexis.com"
+          className="link-white pt-5 mt-6 text-lg text-gray-100 w-fit"
         >
           <span className="text-gray-100" data-text="Connect with us">Connect with us</span>
         </a>

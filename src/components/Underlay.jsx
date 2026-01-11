@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-import cropfieldIMG from "/crop-field.jpg";
-import pulsesIMG from "/pulses.jpg";
-import vesselIMG from "/vessel.jpg";
+import cropfieldIMG from "/crop-field.avif";
+import pulsesIMG from "/pulses.avif";
+import vesselIMG from "/vessel.avif";
 
 export default function Underlay() {
   
   return (
     <section
       id="about"
-      className="bg-warm-100 py-20 px-6 md:px-20 grid md:grid-cols-2 gap-12"
+      className="relative overflow-x-hidden bg-warm-100 py-20 px-6 md:px-20 grid md:grid-cols-2 gap-12"
     >
       {/* TEXT COLUMN */}
       <div className="flex flex-col justify-center">
         <p className="text-lg max-w-xl">
           Global Agri Nexis (GAN) is a leading international agri-commodities firm
           that brings together growers, sellers, and buyers across the oilseeds,
-          pulses and grains value chain.
+          pulses, and grains value chain.
         </p>
         <Link
           to="/about"
@@ -55,27 +55,46 @@ export default function Underlay() {
           />
           <img
             src={vesselIMG}
-            className="col-span-2 rounded-xl object-cover aspect-[16/9]"
+            className="col-span-2 rounded-xl object-cover aspect-[9/16]"
             alt="Cargo vessel"
           />
         </div>
 
         {/* DESKTOP COLLAGE */}
-        <div className="hidden md:block relative h-[20rem]">
-          <img
-            src={vesselIMG}
-            alt="Cargo vessel"
-            className="absolute h-47 left-62 bottom-23 rotate-90 rounded-xl shadow-lg"
-          />
+        <div className="hidden md:grid grid-cols-2 grid-rows-2 gap-5 gap-x-2.5 h-[25rem]overflow-hidden">
           <img
             src={pulsesIMG}
             alt="Pulses"
-            className="absolute h-40 left-8 bottom-48 rounded-xl shadow-md"
+            className="
+                w-full h-full
+                object-cover
+                rounded-xl
+                shadow-lg
+            "
           />
+
+          <img
+            src={vesselIMG}
+            alt="Cargo vessel"
+            className="
+              row-span-2
+              w-full h-full
+              object-cover
+              scale-90
+              rounded-xl
+              shadow-lg
+            "
+          />
+          
           <img
             src={cropfieldIMG}
             alt="Crop field"
-            className="absolute w-65 left-1 top-38 rounded-xl shadow-xl"
+            className="
+              w-full h-full
+              object-cover
+              rounded-xl
+              shadow-lg
+            "
           />
         </div>
       </div>

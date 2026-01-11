@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         heading: [
-          "Poppins",
+          "Lato",
           "Helvetica Neue",
           "Segoe UI",
           "Roboto",
@@ -16,8 +16,9 @@ export default {
           "sans-serif",
         ],
         serif: [
+          "DM Serif Text",
+          "Young Serif",
           "Playfair Display",
-          "Georgia",
           "Times New Roman",
           "serif",
         ],

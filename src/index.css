@@ -16,14 +16,8 @@ body {
   @apply font-sans text-gray-900;
 }
 
-.font-serif {
-  font-family: "DM Serif Text",
-          "Georgia",
-          "Times New Roman",
-          "serif",;
-}
+h1 {font-family: DM Serif Text, Young Serif, Playfair Display, Times New Roman, serif;}
 
-h1,
 h2,
 h3,
 h4,
@@ -83,13 +77,21 @@ html, body, #root {
   outline-offset: 2px;
 }
 
+/* Drop shadow for Hero and Header Text */
+.hero-text-shadow {
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+
 
 /* ===============================
    Emerald Animated Link Highlight
    =============================== */
 
 .link-emerald {        /* gray-700 */
-  --hovered-color: #10b981;        /* emerald-500 */
+  --hovered-color: theme('colors.emerald.600');        /* emerald-500 */
 
   position: relative;
   display: inline-flex;

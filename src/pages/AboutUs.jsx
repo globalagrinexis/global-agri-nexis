@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import parallaxIMG from "/soybean.jpg";
+import parallaxIMG from "/soybean.avif";
 
 export default function AboutUs() {
   const location = useLocation();
@@ -38,7 +38,7 @@ export default function AboutUs() {
   return (
     <main className="bg-warm-100 text-gray-900">
       {/* ================= INTRO ================= */}
-      <section className="bg-emerald-700 text-gray-100 py-24 px-6 md:px-20">
+      <section className="bg-gradient-to-r from-emerald-800 via-emerald-700 via-emerald-600 via-emerald-700 to-emerald-800 text-gray-100 py-24 px-6 md:px-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,6 @@ export default function AboutUs() {
         >
           <h1 
             className="text-4xl pt-8 md:text-5xl font-bold mb-4"
-            style={{fontFamily: "DM Serif Text"}}
           >
               Global Agri Nexis
           </h1>
@@ -133,7 +132,16 @@ export default function AboutUs() {
 
       {/* ================= MANAGEMENT ================= */}
       <section className="max-w-7xl mx-auto px-6 md:px-20 py-24">
-        <h2 className="text-3xl font-semibold mb-12">The Leadership Team</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-semibold mb-12">
+            The Leadership Team
+          </h2>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-10">
           {[1, 2, 3].map((i) => (

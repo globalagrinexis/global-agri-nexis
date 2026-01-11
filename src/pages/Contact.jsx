@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <main className="bg-warm-100 text-gray-900">
       {/* PAGE HEADER */}
-      <section className="bg-emerald-700 text-gray-100 py-24 px-6 md:px-20">
+      <section className="bg-gradient-to-r from-emerald-800 via-emerald-700 via-emerald-600 via-emerald-700 to-emerald-800 text-gray-100 py-24 px-6 md:px-20">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,6 @@ export default function Contact() {
         >
           <h1 
             className="text-4xl pt-8 md:text-5xl font-bold mb-4"
-            style={{fontFamily: "DM Serif Text"}}
           >
             Contact Us
           </h1>

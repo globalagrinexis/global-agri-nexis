@@ -9,7 +9,7 @@ import Services from "./components/Services";
 import Products from "./components/Products";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
-import OrientationGuard from "./components/OrientationGuard";
+import OrientationGuard from "./components/ui/OrientationGuard";
 
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";

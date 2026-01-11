@@ -8,11 +8,14 @@ interface BentoGridProps {
   children: React.ReactNode;
 }
 
-export function BentoGrid({ className, children }: BentoGridProps) {
+export function BentoGrid({ 
+  className, 
+  children 
+}: BentoGridProps) {
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[18rem]",
+        "grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[18rem]",
         className
       )}
     >
@@ -20,6 +23,7 @@ export function BentoGrid({ className, children }: BentoGridProps) {
     </div>
   );
 }
+
 
 /* ---------------- BentoGridItem ---------------- */
 
@@ -39,15 +43,18 @@ export function BentoGridItem({
   return (
     <div
       className={cn(
-        "relative group rounded-2xl bg-warm-100 p-6 shadow transition-all hover:shadow-lg",
+        // h-full will make it fill desktop row height, but auto on smaller screens
+        "relative group rounded-2xl bg-warm-100 p-6 shadow transition-all hover:shadow-lg h-full break-words",
         className
       )}
     >
+      {/* Title + Icon */}
       <div className="flex items-center gap-3 mb-4">
         {icon}
         <h3 className="font-semibold text-lg">{title}</h3>
       </div>
 
+      {/* Description */}
       <p className="text-sm text-gray-600 leading-relaxed">
         {description}
       </p>

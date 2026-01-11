@@ -94,7 +94,7 @@ export default function Header() {
             </button>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex gap-6 text-sm font-medium">
+            <nav className="hidden md:flex gap-6 text-sm font-medium text-lg">
               <Link 
                 to="/about" 
                 className={navLinkClass}
