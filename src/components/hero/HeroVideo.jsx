@@ -28,15 +28,15 @@ export default function HeroVideo() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <video
+        poster={fallbackIMG}
+        preload="metadata"
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
         muted
         playsInline
         autoPlay
         loop
-        preload="metadata"
-        poster={fallbackIMG}
         aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
       >
         {shouldLoad && (
           <source
