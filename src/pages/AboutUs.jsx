@@ -60,31 +60,19 @@ export default function AboutUs() {
       {/* ================= CONTENT ================= */}
       <section className="max-w-7xl mx-auto px-6 md:px-20 pt-20 pb-24">
         <p className="text-gray-700 leading-relaxed max-w-4xl">
-          GAN is a team of seasoned and passionate trader-brokers dedicated to
-          bringing clarity, transparency, and data-driven insight to the
-          increasingly complex global commodity markets. Acting as pure
-          intermediaries, GAN specializes in the import of Oilseeds, Pulses, and
-          Grains—particularly Desi Chickpeas, Yellow Peas, Pigeon Peas, Black
-          Matpe, and Lentils—along with the import of oils and oilseeds and the
-          export of oil meal on C&F, CIF, and High Seas bases.
+          Global Agri Nexis is a specialized agricultural commodity brokerage firm focused on facilitating transparent, efficient, and reliable trade across global agri-markets. We act as a strategic intermediary between producers, processors, traders, and end-users, enabling seamless execution across the agricultural value chain.
           <br />
           <br />
-          Backed by promoters with up to 40 years of deep industry experience
-          across imports and general trade, the firm combines institutional
-          knowledge with a modern, client-centric approach.
+          Backed by promoters with upto 40 years of deep industry experience across imports and general trade, the firm combines institutional knowledge with a modern, client-centric approach. With a strong grounding in market intelligence, trade structuring, and commercial risk management, we support our clients in navigating volatile commodity markets with clarity and confidence. Our approach combines deep product knowledge with disciplined execution, ensuring that every transaction is aligned with prevailing market dynamics, regulatory frameworks, and counterpart objectives.
           <br />
           <br />
-          GAN is committed to keeping clients continuously informed through
-          timely market bids and offers, ensuring fair, efficient, and
-          professional execution of every transaction. With strong,
-          long-standing relationships with refiners and leading national and
-          multinational companies, GAN consistently secures optimal outcomes
-          for both buyers and sellers.
+          At Global Agri Nexis, we cover a wide range of agricultural commodities, with particular expertise in pulses, grains, oilseeds, and related agri-products. We assist clients across domestic and international markets, offering brokerage solutions that emphasize price discovery, contract optimization, and counterparty alignment.
           <br />
           <br />
-          By consciously avoiding self-trading, the firm reinforces its core
-          values of honesty, integrity, and transparency, building lasting
-          trust in every engagement.
+          Integrity, independence, and precision form the cornerstone of our operations. We do not trade on our own account, allowing us to remain fully aligned with our clients’ interests while delivering unbiased market insights and execution support.
+          <br />
+          <br />
+          Backed by industry experience and a global network of buyers and sellers, Global Agri Nexis is positioned as a trusted partner for businesses seeking dependable brokerage services in an increasingly complex agri-commodity landscape.
         </p>
       </section>
 
@@ -108,9 +96,9 @@ export default function AboutUs() {
           className="absolute left-6 md:left-20 top-20 max-w-md text-gray-100"
         >
           <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            Transparency.
-            <br />
             Trust.
+            <br />
+            Transparency.
             <br />
             Precision.
           </h2>

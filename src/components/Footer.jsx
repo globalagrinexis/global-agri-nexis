@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
+import logoWHITE from "/logo-white.svg";
 
 export default function Footer() {
   return (
     <footer>
       <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 via-emerald-600 via-emerald-700 to-emerald-800 text-gray-100 py-16 px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
         <div>
-          <div className="font-bold mb-4">LOGO</div>
+          <div className="font-bold mb-4 pb-4">
+            <img
+              src={logoWHITE}
+              alt="Company logo"
+              className="h-20 block mx-auto md:mx-0 w-auto"
+              loading="eager"
+              decoding="async"
+            />
+          <h4 className="px-4 pt-2 block mx-auto md:mx-0 w-auto">Global Agri Nexis</h4>
+          </div>
           <p className="font-bold">India</p>
           <p className="text-sm">D-59, Hauz Khas</p>
           <p className="text-sm mb-4">New Delhi, Delhi - 110016</p>

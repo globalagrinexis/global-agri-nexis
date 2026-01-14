@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import logoWHITE from "/logo-white.svg";
+import logoCOLOR from "/logo-color.svg";
 
 export default function Header() {
   const heroRef = useRef(null);
@@ -90,7 +92,13 @@ export default function Header() {
               className={`font-bold tracking-wide transition-colors ${logoClass}`}
               aria-label="Go to home page"
             >
-              LOGO
+              <img
+                src={solid || !isHome ? logoCOLOR : logoWHITE}
+                alt="Company logo"
+                className="pb-2 h-10 w-auto"
+                loading="eager"
+                decoding="async"
+              />
             </button>
 
             {/* Desktop nav */}

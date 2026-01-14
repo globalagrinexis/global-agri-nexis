@@ -140,6 +140,15 @@ export default function Contact() {
                 </a>
               </p>
               <p>
+                <strong>LinkedIn:</strong>{" "}
+                  <a
+                    href="https://linkedin.com/company/globalagrinexis"
+                    className="text-emerald-600 hover:underline"
+                  >
+                    linkedin.com/company/globalagrinexis
+                  </a>
+                </p>
+              <p>
                 <strong>Phone:</strong> +91-XXXXXXXXXX
               </p>
               <p>

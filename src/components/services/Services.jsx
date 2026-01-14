@@ -2,7 +2,7 @@
 import { BentoGrid, BentoGridItem } from "./bento-grid";
 import { motion } from "framer-motion";
 import { sectionHeadingReveal } from "../../lib/motion";
-import { services } from "./ServicesData.jsx"
+import { services } from "./services.data.jsx";
 
 export default function Services() {
   return (

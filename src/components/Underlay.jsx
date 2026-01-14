@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import cropfieldIMG from "/crop-field.avif";
 import pulsesIMG from "/pulses.avif";
 import vesselIMG from "/vessel.avif";
+import vesselIMGROT from "/vessel-rotated.avif";
 
 export default function Underlay() {
   
@@ -54,7 +55,7 @@ export default function Underlay() {
             alt="Pulses"
           />
           <img
-            src={vesselIMG}
+            src={vesselIMGROT}
             className="col-span-2 rounded-xl object-cover aspect-[16/9]"
             alt="Cargo vessel"
           />
