@@ -1,6 +1,6 @@
 // src/components/products/ProductMap.jsx
 import CountryLabel from "./CountryLabels";
-import { HIGHLIGHT_COLOR } from "./products.data";
+import { HIGHLIGHT_COLOR } from "../../data/products.data";
 
 export default function ProductMap({
   path,

@@ -2,12 +2,11 @@
 import { BentoGrid, BentoGridItem } from "./bento-grid";
 import { motion } from "framer-motion";
 import { sectionHeadingReveal } from "../../lib/motion";
-import { services } from "./services.data.jsx";
+import { services } from "../../data/services.data";;
 
 export default function Services() {
   return (
     <section
-      id="services"
       className="bg-warm-gray py-20 px-6 md:px-20"
       aria-labelledby="services-heading"
     >

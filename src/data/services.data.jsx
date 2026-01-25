@@ -62,7 +62,7 @@ export const services = [
     title: "Tech Based Market Intelligence & Strategic Advisory",
     description: (
       <>
-       We provide real-time Technology driven market insights and strategic guidance through to help clients navigate volatility and capitalize on opportunity.Our advisory covers price trends, crop cycles, policy developments, and supply–demand dynamics, enabling informed, data-led trading decisions.
+       We provide real-time Technology driven market insights and strategic guidance through to help clients navigate volatility and capitalize on opportunity. Our advisory covers price trends, crop cycles, policy developments, and supply–demand dynamics, enabling informed, data-led trading decisions.
       </>
     ),
     icon: <BrainCircuit className="h-6 w-6 text-emerald-600" />,

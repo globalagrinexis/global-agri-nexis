@@ -109,8 +109,8 @@ export default function Contact() {
 
             <motion.button
               whileTap={{ scale: 0.97 }}
-              className="bg-emerald-600 text-white px-6 py-3 rounded-md
-                font-medium hover:bg-emerald-700 transition"
+              className="bg-emerald-700 hover:bg-emerald-800 cursor-pointer text-white px-6 py-3 rounded-md
+                font-medium transition"
               type="submit"
             >
               Send Message
@@ -133,8 +133,9 @@ export default function Contact() {
               <p>
                 <strong>Email:</strong>{" "}
                 <a
-                  href="mailto:info@gan.com"
-                  className="text-emerald-600 hover:underline"
+                  href="mailto:info@globalagrinexis.com"
+                  className="text-emerald-600 link-emerald"
+                  data-text="info@globalagrinexis.com"
                 >
                   info@globalagrinexis.com
                 </a>
@@ -142,14 +143,17 @@ export default function Contact() {
               <p>
                 <strong>LinkedIn:</strong>{" "}
                   <a
-                    href="https://linkedin.com/company/globalagrinexis"
-                    className="text-emerald-600 hover:underline"
+                    href="https://www.linkedin.com/company/global-agri-nexis/"
+                    className="text-emerald-600 link-emerald"
+                    data-text="global-agri-nexis"
+                    target="_blank" 
+                    rel="noopener noreferrer"
                   >
-                    linkedin.com/company/globalagrinexis
+                    global-agri-nexis
                   </a>
                 </p>
               <p>
-                <strong>Phone:</strong> +91-XXXXXXXXXX
+                <strong>Phone:</strong> +91-7827901476
               </p>
               <p>
                 <strong>Locations:</strong> India, UAE

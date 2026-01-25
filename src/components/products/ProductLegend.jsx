@@ -1,5 +1,5 @@
 // src/components/products/ProductLegend.jsx
-import { HIGHLIGHT_COLOR } from "./products.data";
+import { HIGHLIGHT_COLOR } from "../../data/products.data";
 
 export default function ProductLegend({
   index,

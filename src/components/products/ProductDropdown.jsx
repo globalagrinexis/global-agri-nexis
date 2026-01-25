@@ -8,7 +8,7 @@ export default function ProductDropdown({
   index,
 }) {
   return (
-    <div className="relative mb-6 max-w-sm mx-auto">
+    <div className="relative mb-6 max-w-70 mx-auto">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex justify-between items-center px-5 py-3 rounded-full border bg-warm-100"

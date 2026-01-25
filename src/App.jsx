@@ -7,8 +7,8 @@ import Hero from "./components/hero/Hero";
 import Underlay from "./components/Underlay";
 import Services from "./components/services/Services";
 import Products from "./components/products/Products";
-import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import OrientationGuard from "./components/ui/OrientationGuard";
 
 import AboutUs from "./pages/AboutUs";
@@ -20,9 +20,12 @@ function Home() {
     <>
       <Hero />
       <Underlay />
-      <Services />
-      <Products />
-      <Newsletter />
+      <section id="services">
+        <Services />
+      </section>
+      <section id="products">
+        <Products />
+      </section>
     </>
   );
 }
@@ -67,6 +70,27 @@ function AnimatedRoutes() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
+  useEffect(() => {
+    if (!location.hash) return;
+
+    // Only handle hash scrolling on the home page
+    if (location.pathname !== "/") return;
+
+    const id = location.hash.slice(1);
+
+    const timeout = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 500); // wait for Framer Motion + DOM paint
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname, location.hash]);
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
@@ -107,6 +131,9 @@ export default function App() {
       <Header />
       <AnimatedRoutes />
       <Footer />
+
+      {/* Scroll-to-top button (mobile only) */}
+      <ScrollToTopButton />
     </div>
   );
 }

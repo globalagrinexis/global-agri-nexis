@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import logoWHITE from "/logo-white.svg";
 import logoCOLOR from "/logo-color.svg";
 
@@ -41,14 +42,6 @@ export default function Header() {
     }
   };
 
-  const handleHomeScroll = (id) => {
-    if (!isHome) {
-      navigate(`/#${id}`);
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   /* -------------------------------
      Styles
   -------------------------------- */
@@ -56,9 +49,6 @@ export default function Header() {
     solid || !isHome
       ? "text-gray-600 hover:text-emerald-500"
       : "text-gray-100 hover:text-emerald-500";
-
-  const logoClass =
-    solid || !isHome ? "text-gray-600" : "text-white";
 
   return (
     <>
@@ -89,13 +79,13 @@ export default function Header() {
             {/* LOGO */}
             <button
               onClick={goHome}
-              className={`font-bold tracking-wide transition-colors ${logoClass}`}
+              className={`font-bold tracking-wide transition-colors`}
               aria-label="Go to home page"
             >
               <img
                 src={solid || !isHome ? logoCOLOR : logoWHITE}
                 alt="Company logo"
-                className="pb-2 h-10 w-auto"
+                className="pb-2 px-2 pt-2 h-13 md:h-15 w-auto cursor-pointer"
                 loading="eager"
                 decoding="async"
               />
@@ -111,19 +101,13 @@ export default function Header() {
                 About Us
               </Link>
 
-              <button
-                onClick={() => handleHomeScroll("services")}
-                className={navLinkClass}
-              >
+              <Link to="/#services" className={navLinkClass}>
                 Services
-              </button>
+              </Link>
 
-              <button
-                onClick={() => handleHomeScroll("products")}
-                className={navLinkClass}
-              >
+              <Link to="/#products" className={navLinkClass}>
                 Products
-              </button>
+              </Link>
 
               <Link 
                 to="/contact" 
@@ -138,7 +122,7 @@ export default function Header() {
             {!menuOpen && (
               <button
                 aria-label="Open menu"
-                className={`md:hidden text-2xl transition-colors ${
+                className={`md:hidden text-3xl transition-colors ${
                   solid || !isHome ? "text-gray-600" : "text-white"
                 }`}
                 onClick={() => setMenuOpen(true)}
@@ -168,6 +152,7 @@ export default function Header() {
 
         <nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
           <button
+            state={{ scrollToTop: true }}
             onClick={() => {
               goHome();
               setMenuOpen(false);
@@ -176,29 +161,34 @@ export default function Header() {
             Home
           </button>
 
-          <Link to="/about" onClick={() => setMenuOpen(false)}>
+          <Link 
+            to="/about" 
+            state={{ scrollToTop: true }}
+            onClick={() => setMenuOpen(false)}
+          >
             About Us
           </Link>
 
-          <button
-            onClick={() => {
-              handleHomeScroll("services");
-              setMenuOpen(false);
-            }}
+          <Link
+            to="/#services"
+            onClick={() => setMenuOpen(false)}
           >
             Services
-          </button>
+          </Link>
 
-          <button
-            onClick={() => {
-              handleHomeScroll("products");
-              setMenuOpen(false);
-            }}
+          <Link
+            to="/#products"
+            onClick={() => setMenuOpen(false)}
           >
             Products
-          </button>
+          </Link>
 
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>
+
+          <Link 
+            to="/contact" 
+            state={{ scrollToTop: true }}
+            onClick={() => setMenuOpen(false)}
+          >
             Contact Us
           </Link>
         </nav>

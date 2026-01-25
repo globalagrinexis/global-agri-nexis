@@ -16,6 +16,27 @@
   }
 }
 
+/* Hide Scrollbar */
+
+@media (min-width: 1024px) {
+  /* Chrome / Safari / Edge */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  html {
+    scrollbar-width: none;
+  }
+
+  /* Old Edge / IE */
+  body {
+    -ms-overflow-style: none;
+  }
+}
+
+
+
 /* Font related styles */
 body {
   @apply font-sans text-gray-900;
@@ -103,8 +124,10 @@ html, body, #root {
   align-items: center;
   gap: 0.5rem;
 
-  font-weight: 500;
-  font-size: 1.125rem; /* text-lg */
+  /* font-weight: 500; */
+  /* (font size: text-lg) */
+  /* font-size: 1.125rem; */
+  
   cursor: pointer;
   text-decoration: none;
 }

@@ -1,36 +1,53 @@
+// Newsletter.jsx
 import { motion } from "framer-motion";
 import { sectionHeadingReveal } from "../lib/motion";
 
-export default function Newsletter() {
+export default function Newsletter({ compact = false }) {
   return (
     <section
-      className="py-20 bg-warm-100 px-6 text-center"
+      className={
+        compact
+          ? "text-sm"
+          : "py-20 bg-warm-100 px-6 text-center"
+      }
       aria-labelledby="newsletter-heading"
     >
-      <motion.div
-        {...sectionHeadingReveal}
+      <p 
+        id="newsletter-heading"
+        className={`"font-bold pb-4 mb-4" ${
+          compact ? "text-lg" : "text-2xl"
+        }`}
       >
-        <h2 id="newsletter-heading" className="text-2xl font-semibold mb-4">
-          Weekly Commodity Insights
-        </h2>
-      </motion.div>
+        Commodity Newsletter
+      </p>
+
       <form
-        className="flex justify-center gap-2"
+        className={`flex gap-2 ${
+          compact
+            ? "flex-col lg:flex-row lg:items-center"
+            : "justify-center"
+        }`}
         aria-label="Newsletter signup"
       >
         <input
           aria-label="Email"
           type="email"
+          placeholder="name@company.com"
           required
-          className="border px-4 py-2 rounded w-64"
+          className={`border px-3 py-2 rounded bg-warm-50 text-black ${
+            compact ? "w-full lg:w-48" : "w-64"
+          }`}
         />
+
         <motion.button
           whileTap={{ scale: 0.95 }}
-          className="bg-emerald-700 text-white px-6 py-2 rounded"
+          className="bg-black text-white px-4 py-2 rounded whitespace-nowrap w-full lg:w-auto"
         >
           Subscribe
         </motion.button>
       </form>
+
+
     </section>
   );
 }

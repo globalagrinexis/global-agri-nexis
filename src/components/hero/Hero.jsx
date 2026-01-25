@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+
 import HeroVideo from "./HeroVideo.jsx";
 import heroPoster from "/hero-fallback.avif"
+
+import ScrollIndicator from "./ScrollIndicator";
+
 import { heroTextReveal } from "../../lib/motion.ts"
 import { useLowPowerMode } from "../../hooks/useLowPower.ts";
 
@@ -51,10 +55,6 @@ export default function Hero() {
         />
       )}
 
-
-      {/* Overlay */}
-      {/* <div className="absolute inset-0 backdrop-blur-sm bg-gray-700/15" /> */}
-
       {/* Content */}
       <motion.div
         {...heroTextReveal}
@@ -72,6 +72,11 @@ export default function Hero() {
         </a>
 
       </motion.div>
+
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+        <ScrollIndicator />
+      </div>
+
     </section>
   );
 }

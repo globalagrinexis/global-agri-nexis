@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { pagesHeadingReveal } from "../lib/motion"
+import TeamCard from "../components/TeamCard";
+import { teamMembers } from "../data/team.data";
 import { useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import parallaxIMG from "/soybean.avif";
+import parallaxIMG from "/assets/soybean.avif";
 
 export default function AboutUs() {
   const location = useLocation();
@@ -59,7 +61,7 @@ export default function AboutUs() {
 
       {/* ================= CONTENT ================= */}
       <section className="max-w-7xl mx-auto px-6 md:px-20 pt-20 pb-24">
-        <p className="text-gray-700 leading-relaxed max-w-4xl">
+        <p className="text-gray-700 text-justify leading-relaxed max-w-4xl">
           Global Agri Nexis is a specialized agricultural commodity brokerage firm focused on facilitating transparent, efficient, and reliable trade across global agri-markets. We act as a strategic intermediary between producers, processors, traders, and end-users, enabling seamless execution across the agricultural value chain.
           <br />
           <br />
@@ -124,37 +126,23 @@ export default function AboutUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="mb-20"
         >
-          <h2 className="text-3xl font-semibold mb-12">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-4">
             The Leadership Team
           </h2>
+          <p className="max-w-2xl text-gray-600">
+            Experience that moves markets.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-10">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="bg-warm-50 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm"
-            >
-              <div className="w-40 h-40 rounded-full bg-warm-gray mb-6" />
-
-              <h3 className="font-semibold text-lg">Director Name</h3>
-              <p className="text-sm text-gray-500 mb-4">Designation</p>
-
-              <p className="text-sm text-gray-700 mb-4">
-                Brief profile description of the director highlighting
-                experience, expertise, and leadership within the organization.
-              </p>
-
-              <div className="flex gap-4 text-sm text-emerald-600">
-                <a href="#" className="hover:underline">
-                  LinkedIn
-                </a>
-                <a href="#" className="hover:underline">
-                  Email
-                </a>
-              </div>
-            </div>
+        <div className="space-y-6">
+          {teamMembers.map((member, index) => (
+            <TeamCard
+              key={member.id}
+              member={member}
+              index={index}
+            />
           ))}
         </div>
       </section>

@@ -1,19 +1,28 @@
 // src/components/bento-grid.jsx
 import React from "react";
+import { motion } from "framer-motion";
+import { 
+  gridVariants,
+  itemVariants
+} from "../../lib/motion"
 import { cn } from "../../lib/utils";
 
 /* ---------------- BentoGrid ---------------- */
 
 export function BentoGrid({ className, children }) {
   return (
-    <div
+    <motion.div
+      variants={gridVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-120px" }}
       className={cn(
         "grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto",
         className
       )}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -36,17 +45,18 @@ export function BentoGridItem({
     if (!textRef.current || canExpand) return;
 
     const el = textRef.current;
-
     const hasOverflow = el.scrollHeight > el.clientHeight;
+
     if (hasOverflow) {
       setCanExpand(true);
     }
   }, [description, canExpand]);
 
   return (
-    <div
+    <motion.div
+      variants={itemVariants}
       className={cn(
-        "relative rounded-2xl bg-warm-100 p-6 shadow transition-all duration-300 hover:shadow-lg",
+        "relative rounded-2xl bg-warm-100 p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg",
         className
       )}
     >
@@ -73,11 +83,11 @@ export function BentoGridItem({
       {canExpand && (
         <button
           onClick={() => setExpanded((prev) => !prev)}
-          className="mt-3 text-sm font-medium text-emerald-600 hover:text-emerald-700"
+          className="mt-3 text-sm font-medium text-emerald-600 hover:text-emerald-700 cursor-pointer"
         >
           {expanded ? "Read less" : "Read more"}
         </button>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -1,5 +1,5 @@
 // src/components/products/CountryLabel.jsx
-import { HIGHLIGHT_COLOR } from "./products.data";
+import { HIGHLIGHT_COLOR } from "../../data/products.data";
 
 export default function CountryLabel({ x, y, text }) {
   return (
