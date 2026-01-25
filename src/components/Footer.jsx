@@ -289,7 +289,7 @@ export default function Footer() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.25 }}
-                      className="text-sm text-emerald-400 mt-1"
+                      className="text-sm text-gray-100 mt-1"
                     >
                       Thanks for subscribing!
                     </motion.p>
