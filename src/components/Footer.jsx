@@ -1,8 +1,58 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { supabase } from '../lib/supabase';
 import logoWHITE from "/logo-white.svg";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-export default function Footer({ compact = false }) {
+export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const { error } = await supabase
+      .from("newsletter_subscribers")
+      .insert({
+        email,
+        is_confirmed: consent,
+        source: "footer",
+      });
+
+    if (error) {
+      if (error.code === "23505") {
+        setError("You're already subscribed!");
+      } else {
+        setError(error.message);
+      }
+    } else {
+      // ✅ Trigger success UI
+      setSuccess(true);
+    }
+
+    setLoading(false);
+  };
+
+
+  useEffect(() => {
+    if (!success) return;
+
+    const timer = setTimeout(() => {
+      setSuccess(false);
+      setEmail("");
+      setConsent(false);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, [success]);
+
+
+
   return (
     <footer>
       <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 via-emerald-600 via-emerald-700 to-emerald-800 text-gray-100 py-16 px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-10 md:text-left">
@@ -106,49 +156,152 @@ export default function Footer({ compact = false }) {
               <p className="font-bold mb-4">
                 Sign up for our Newsletter
               </p>
-              <p className="text-sm pb-5">
+              <p className="text-sm text-left pb-5">
                 Our weekly perspective on the key drivers shaping agri-commodity markets globally.
               </p>
-              <p className="text-sm pb-2">
-                <span className="font-medium">Email</span> *
-              </p>
+              
+              
               <form
                 aria-label="Newsletter signup"
-                className={`
-                  flex flex-col gap-2
+                onSubmit={handleSubscribe}
+                className="
+                  flex flex-col
+                  gap-4
                   w-full max-w-sm
-
-                  xl:flex-row xl:items-center
-                  xl:absolute
-
-                  ${compact ? "" : "xl:justify-center"}
-                `}
+                "
               >
-                <input
-                  aria-label="Email"
-                  type="email"
-                  placeholder="example@company.com"
-                  required
-                  className="
-                    w-full
-                    border px-3 py-2 rounded
-                    bg-warm-50 text-black
-                  "
-                />
+                {/* Email field */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-sm pt-4 font-medium text-gray-100">
+                    Email <span className="opacity-70">*</span>
+                  </label>
 
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
+                  <input
+                    aria-label="Email"
+                    type="email"
+                    placeholder="example@company.com"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="
+                      w-full
+                      border border-gray-200
+                      px-3 py-2.5
+                      rounded-md
+                      bg-warm-50 text-black
+                      focus:outline-none focus:ring-2 focus:ring-black/40
+                    "
+                  />
+                </div>
+
+                {/* Consent checkbox */}
+                <label
                   className="
-                    w-full xl:w-auto
-                    bg-black/85 hover:bg-black
-                    cursor-pointer
-                    text-white px-4 py-2 rounded
+                    relative
+                    flex items-start
+                    gap-3 mt-1
+                    text-sm text-gray-100
+                    leading-snug
                   "
                 >
-                  Subscribe
-                </motion.button>
-              </form>
+                  {/* Checkbox wrapper ensures stable sizing on iPad */}
+                  <span className="relative flex-shrink-0 h-5 w-5 mt-0.5">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      className="
+                        peer
+                        absolute inset-0
+                        h-5 w-5
+                        appearance-none
+                        rounded-md
+                        border border-gray-100
+                        bg-transparent
+                      "
+                    />
 
+                    {/* Custom checkmark */}
+                    <span
+                      className="
+                        cursor-pointer
+                        absolute inset-0
+                        flex items-center justify-center
+                        text-white
+                        opacity-0
+                        peer-checked:opacity-100
+                        transition-opacity duration-150
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+
+                  {/* Label text */}
+                  <span>
+                    Yes, subscribe me to your newsletter.
+                    <span className="opacity-70"> *</span>
+                  </span>
+                </label>
+
+                {/* Submit button */}
+                <motion.button
+                  whileTap={{ scale: success ? 1 : 0.95 }}
+                  disabled={loading || success}
+                  className={`
+                    mt-1 cursor-pointer
+                    px-4 py-2.5 rounded-md
+                    text-sm font-medium
+                    transition-colors duration-300
+                    ${
+                      success
+                        ? "bg-emerald-600 text-white cursor-default"
+                        : "bg-black/85 hover:bg-black text-white"
+                    }
+                    ${loading ? "opacity-60" : ""}
+                  `}
+                  type="submit"
+                >
+                  {loading
+                    ? "Subscribing…"
+                    : success
+                    ? "Subscribed ✓"
+                    : "Subscribe"}
+                </motion.button>
+
+                {/* Auto-dismiss success message / Feedback */}
+                <AnimatePresence>
+                  {success && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.25 }}
+                      className="text-sm text-emerald-400 mt-1"
+                    >
+                      Thanks for subscribing!
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+
+                {error && (
+                  <p className="text-sm text-red-500 mt-1">
+                    {error}
+                  </p>
+                )}
+              </form>
             </div>
 
             {/* centered underneath cols 2 + 3 */}
