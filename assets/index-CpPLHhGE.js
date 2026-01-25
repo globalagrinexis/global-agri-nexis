@@ -107,7 +107,7 @@ ${P}`}class Xe extends Error{constructor({message:e,code:n,cause:i,name:o}){var 
                     transition-colors duration-300
                     ${u?"bg-emerald-600 text-white cursor-default":"bg-black/85 hover:bg-black text-white"}
                     ${o?"opacity-60":""}
-                  `,type:"submit",children:o?"Subscribing…":u?"Subscribed ✓":"Subscribe"}),S.jsx(nh,{children:u&&S.jsx(ye.p,{initial:{opacity:0,y:-6},animate:{opacity:1,y:0},exit:{opacity:0,y:-6},transition:{duration:.25},className:"text-sm text-emerald-400 mt-1",children:"Thanks for subscribing!"})}),h&&S.jsx("p",{className:"text-sm text-red-500 mt-1",children:h})]})]}),S.jsx("div",{className:"hidden md:flex md:col-span-2 justify-center mt-10",children:S.jsxs("h1",{className:`
+                  `,type:"submit",children:o?"Subscribing…":u?"Subscribed ✓":"Subscribe"}),S.jsx(nh,{children:u&&S.jsx(ye.p,{initial:{opacity:0,y:-6},animate:{opacity:1,y:0},exit:{opacity:0,y:-6},transition:{duration:.25},className:"text-sm text-gray-100 mt-1",children:"Thanks for subscribing!"})}),h&&S.jsx("p",{className:"text-sm text-red-500 mt-1",children:h})]})]}),S.jsx("div",{className:"hidden md:flex md:col-span-2 justify-center mt-10",children:S.jsxs("h1",{className:`
                   text-gray-100
                   hidden
                   md:text-4xl
