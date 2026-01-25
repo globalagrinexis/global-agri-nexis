@@ -44,7 +44,7 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
                     text-white px-4 py-2 rounded
                   `,children:"Subscribe"})]})]}),w.jsx("div",{className:"hidden md:flex md:col-span-2 justify-center mt-10",children:w.jsxs("h1",{className:`
                   text-gray-100
-                  
+                  hidden
                   md:text-4xl
                   xl:text-5xl
                   font-medium
